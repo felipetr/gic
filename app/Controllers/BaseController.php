@@ -16,7 +16,6 @@ namespace App\Controllers;
 
 use CodeIgniter\Controller;
 
-
 class BaseController extends Controller
 {
 
@@ -28,11 +27,6 @@ class BaseController extends Controller
 	 * @var array
 	 */
 	protected $helpers = [];
-//	protected $phpmailer;
-	
-
-	
-
 
 	/**
 	 * Constructor.
@@ -40,9 +34,8 @@ class BaseController extends Controller
 	public function initController(\CodeIgniter\HTTP\RequestInterface $request, \CodeIgniter\HTTP\ResponseInterface $response, \Psr\Log\LoggerInterface $logger)
 	{
 		// Do Not Edit This Line
-		
 		parent::initController($request, $response, $logger);
-		//$this->phpmailer = new PHPmailerCI4();
+
 		//--------------------------------------------------------------------
 		// Preload any models, libraries, etc, here.
 		//--------------------------------------------------------------------

@@ -1,7 +1,7 @@
 <?php namespace Config;
 
 // Create a new instance of our RouteCollection class.
-$routes = Services::routes(true);
+$routes = Services::routes();
 
 // Load the system's routing file first, so that the app and ENVIRONMENT
 // can override as needed.
@@ -19,14 +19,7 @@ $routes->setDefaultNamespace('App\Controllers');
 $routes->setDefaultController('Home');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
-$routes->set404Override(function()
-    {
-
-		$data['title'] = '404';
-        $data['content'] = "Página não encontrada";
-        echo view('templates/error', $data);
-		
-    });
+$routes->set404Override();
 $routes->setAutoRoute(true);
 
 /**

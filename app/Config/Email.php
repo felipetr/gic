@@ -26,7 +26,7 @@ class Email extends BaseConfig
 	 *
 	 * @var string
 	 */
-	public $userAgent = 'Codeigniter';
+	public $userAgent = 'CodeIgniter';
 
 	/**
 	 * The mail sending protocol: mail, sendmail, smtp
@@ -47,42 +47,42 @@ class Email extends BaseConfig
 	 *
 	 * @var string
 	 */
-	public $SMTPHost = 'mail.felipetravassos.com';
+	public $SMTPHost;
 
 	/**
 	 * SMTP Username
 	 *
 	 * @var string
 	 */
-	public $SMTPUser = 'naoresponda@felipetravassos.com';
+	public $SMTPUser;
 
 	/**
 	 * SMTP Password
 	 *
 	 * @var string
 	 */
-	public $SMTPPass = '%ZGa$ev}PGWm';
+	public $SMTPPass;
 
 	/**
 	 * SMTP Port
 	 *
 	 * @var integer
 	 */
-	public $SMTPPort = 465;
+	public $SMTPPort = 25;
 
 	/**
 	 * SMTP Timeout (in seconds)
 	 *
 	 * @var integer
 	 */
-	public $SMTPTimeout = 10;
+	public $SMTPTimeout = 5;
 
 	/**
 	 * Enable persistent SMTP connections
 	 *
 	 * @var boolean
 	 */
-	public $SMTPKeepAlive = true;
+	public $SMTPKeepAlive = false;
 
 	/**
 	 * SMTP Encryption. Either tls or ssl
@@ -96,7 +96,7 @@ class Email extends BaseConfig
 	 *
 	 * @var boolean
 	 */
-	public $wordWrap = false;
+	public $wordWrap = true;
 
 	/**
 	 * Character count to wrap at
@@ -110,7 +110,7 @@ class Email extends BaseConfig
 	 *
 	 * @var string
 	 */
-	public $mailType = 'html';
+	public $mailType = 'text';
 
 	/**
 	 * Character set (utf-8, iso-8859-1, etc.)
@@ -131,7 +131,7 @@ class Email extends BaseConfig
 	 *
 	 * @var integer
 	 */
-	public $priority = 1;
+	public $priority = 3;
 
 	/**
 	 * Newline character. (Use “\r\n” to comply with RFC 822)
