@@ -9,6 +9,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     <link rel="icon shortcut" type="image/x-icon" href="<?php echo base_url("/assets/img/favicon.png"); ?>" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<link rel="apple-touch-icon" href="<?php echo base_url("/assets/img/favicon.png"); ?>">
+	<link rel="apple-touch-icon" sizes="76x76" href="<?php echo base_url("/assets/img/favicon.png"); ?>">
+	<link rel="apple-touch-icon" sizes="120x120" href="<?php echo base_url("/assets/img/favicon.png"); ?>">
+	<link rel="apple-touch-icon" sizes="152x152" href="<?php echo base_url("/assets/img/favicon.png"); ?>">
+
+
+
     <link rel="stylesheet" href="<?php echo base_url("/assets/lib/bootstrap/css/bootstrap.min.css"); ?>">
     <link rel="stylesheet" href="<?php echo base_url("/assets/lib/fontawesome/css/all.css"); ?>">
     <link rel="stylesheet" href="<?php echo base_url("/assets/lib/cleanalert/cleanalert.css"); ?>">
@@ -18,7 +26,8 @@
     <script src="<?php echo base_url("/assets/lib/jquery-3.4.0.min.js"); ?>"></script>
 
 
-
+	<meta name="theme-color" content="#FFFFFF">
+	<meta name="apple-mobile-web-app-status-bar-style" content="#FFFFFF">
     <meta name="keywords" content="GIC - Gestor de Informação Compartilhada" />
     <meta name="description" content="GIC - Gestor de Informação Compartilhada" />
     <meta name="generator" content="Gerens" />
