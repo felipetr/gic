@@ -1,0 +1,117 @@
+html
+{
+    height: 100%;
+}
+body
+{
+    background: url('../img/homebg.jpg') center top #2d2d2d;
+    font-family: 'Manrope', sans-serif;
+    background-size: cover;
+    height: 100%;
+}
+#app
+{
+    background: rgba(45,45,45, .7);
+    height: 100%;
+
+}
+.title-logo
+{
+    line-height: 30px;
+    font-size: 30px;
+    padding-top: 5px;
+}
+.loginbox
+{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top:0;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    right: 0;
+}
+.loginbox form
+{
+    max-width: 100%;
+    width: 400px;
+}
+.text-hover-info:hover
+{
+ color: #17a3b8 !important;
+}
+#wof{
+    min-height: calc(100% - 40.55px);
+    position: relative;
+}
+.chamaseta
+{
+    position: relative;
+}
+
+.chamaseta::after
+{
+    position: absolute;
+    content: '1';
+    font-size: 0 !important;
+    border-style: solid;
+    border-width: 7px 7px 7px 0;
+    border-color: transparent #ffc107 transparent transparent;
+    left:-7px;
+    top: calc(50% - 7px);
+}
+
+#alertbox .alert
+{
+    transition: all .15s ease-in-out;
+}
+.bg-danger.chamaseta::after
+{
+    border-color: transparent #dc3545 transparent transparent !important;
+}
+.bg-danger.chamaseta
+{
+    color: #fff !important;
+}
+@media (max-width: 1199px) { 
+
+}
+
+@media (max-width: 991px) { 
+
+
+}
+@media (max-width: 767px) { 
+
+
+}
+@media (max-width: 575px) { 
+    .loginbox
+    {
+
+        left: 0;
+        text-align: center;
+    }
+
+}
+
+
+@media (min-width: 576px) { 
+
+}
+
+@media (min-width: 768px) { 
+
+}
+
+
+@media (min-width: 992px) { 
+
+}
+
+
+@media (min-width: 1200px) { 
+
+}

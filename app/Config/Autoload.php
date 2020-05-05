@@ -13,7 +13,7 @@ class Autoload extends \CodeIgniter\Config\AutoloadConfig
 {
 	public $psr4 = [];
 
-	public $classmap = [];
+	public $classmap = ['PHPMailerCI4' => APPPATH .'/Libraries/PHPMailerCI4.php'];
 
 	//--------------------------------------------------------------------
 
