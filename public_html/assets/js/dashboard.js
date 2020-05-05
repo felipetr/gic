@@ -455,7 +455,14 @@ $(function () {
                         else if (returndata['status'] == 'success') {
                             var close = returndata['validacao'];
                             if (close) {
-                                window.location.href = returndata['validacao'];
+                                //window.location.href = returndata['validacao'];
+                                var textodealerta = '<h3 class="p-0 m-0 text-center"><i class="fas fa-check-circle"></i></h3>';
+                                textodealerta += '<small class="d-block text-center"><b class="d-block text-center">Usuário registrado com sucesso!</small>';
+
+
+                                $('#newuserform #alertbox .alert').html(textodealerta).removeClass('alert-info').removeClass('alert-warning').addClass('alert-danger').removeClass('alert-success');
+
+
 
                             } else {
                                 var textodealerta = '<h3 class="p-0 m-0 text-center"><i class="fas fa-check-circle"></i></h3>';
