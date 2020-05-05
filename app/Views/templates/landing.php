@@ -21,8 +21,8 @@
     <link rel="stylesheet" href="<?php echo base_url("/assets/css/landingpage.css"); ?>">
 	<script src="<?php echo base_url("/assets/lib/jquery-3.4.0.min.js"); ?>"></script>
     
-	<meta name="theme-color" content="#343a40">
-<meta name="apple-mobile-web-app-status-bar-style" content="#343a40">
+	<meta name="theme-color" content="#d39e00">
+	<meta name="apple-mobile-web-app-status-bar-style" content="#d39e00">
 
     <meta name="keywords"
           content="GIC - Gestor de Informação Compartilhada"/>
