@@ -32,10 +32,10 @@ class Database extends \CodeIgniter\Database\Config
 	public $default = [
 		'DSN'      => '',
 		'hostname' => 'localhost',
-		'username' => 'felipetr_gic',
+		'username' => 'root',
 		'encrypt' => 'testedeencr',
-		'password' => 'EgK};_LYSm{M',
-		'database' => 'felipetr_gic',
+		'password' => '',
+		'database' => 'gerens_bio',
 		'DBDriver' => 'MySQLi',
 		'DBPrefix' => '',
 		'pConnect' => false,
