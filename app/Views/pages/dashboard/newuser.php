@@ -90,6 +90,7 @@
                         <option value="SP">São Paulo</option>
                         <option value="SE">Sergipe</option>
                         <option value="TO">Tocantins</option>
+						<option value="EX">Extrangeiro</option>
                     </select>
                 </div>
                 <div class="col-12 col-xl-4 pb-3">
@@ -146,7 +147,7 @@
             <div class="<?php if ($typeofuser != 4) {
                             echo 'd-none';
                         } else { } ?>">
-                <div class="<?php if ($typeofuser != 3) {
+                <div class="<?php if ($typeofuser < 3) {
                                 echo 'd-none';
                             } ?>">
                     <hr>
@@ -174,7 +175,7 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        Portifólio
+                    Portfólio
                         <input type="url" name="portifolio" class="form-control" value="">
                     </div>
                 </div>

@@ -68,7 +68,7 @@
                                 <div class="dropdown-menu bg-dark" aria-labelledby="clienteDropdown">
                                     <a class="dropdown-item" href="<?php echo base_url('/Dashboard/costumers/list'); ?>"><i class="fas fa-bars"></i> Lista de Clientes</a>
                                     <a class="dropdown-item" href="<?php echo base_url('/Dashboard/user/costumer/new'); ?>"><i class="fas fa-plus"></i> Novo Cliente</a>
-                                    <a class="dropdown-item" href="<?php echo base_url('/Dashboard/user/costumers/workareas'); ?>"><i class="fas fa-star"></i> Áreas de Atuação</a>
+                                    <a class="dropdown-item" href="<?php echo base_url('/Workareas/costumers/list'); ?>"><i class="fas fa-star"></i> Áreas de Atuação</a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
@@ -97,7 +97,7 @@
                                 <div class="dropdown-menu bg-dark" aria-labelledby="professionalsDropdown">
                                     <a class="dropdown-item" href="<?php echo base_url('/Dashboard/professionals/list'); ?>"><i class="fas fa-bars"></i> Lista de Profissionais</a>
                                     <a class="dropdown-item" href="<?php echo base_url('/Dashboard/user/professional/new'); ?>"><i class="fas fa-plus"></i> Novo Profissional</a>
-                                    <a class="dropdown-item" href="<?php echo base_url('/Dashboard/user/professionals/workareas'); ?>"><i class="fas fa-star"></i> Áreas de Atuação</a>
+                                    <a class="dropdown-item" href="<?php echo base_url('/Workareas/professionals/list/'); ?>"><i class="fas fa-star"></i> Áreas de Atuação</a>
                                 </div>
                             </li>
                             <?php if ($logged->type == 0) { ?>

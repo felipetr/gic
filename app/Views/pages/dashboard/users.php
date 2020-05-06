@@ -30,9 +30,13 @@
 
                         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                             <div class="card-body">
-
+								<div class="text-center">
+                                <a href="<?php echo (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";?>" class="btn btn-secondary btn-block">Limpar Filtro</a>
+								<hr>
+								</div>
+                            
                                 <?php
-                                if ($typeuser == 4 and $logged->type == 1) {
+                                if ($typeuser == 4 and $logged->type < 2) {
                                     ?>
                                     <b>Avaliação</b>
                                     <div class="row">
@@ -136,7 +140,7 @@
 
 
                                 <hr>
-                                <button class="btn btn-secondary">Filtrar</button>
+                                <button class="btn btn-secondary btn-block">Filtrar</button>
 
                             </div>
                         </div>
@@ -206,7 +210,7 @@
                                                         echo base_url('/Dashboard/user/' . $typeslug . '/' . $value->slug); ?>" class="btn btn-small btn-info  btn-block"><i class="fas fa-user-edit"></i></a>
                                     </div>
                                     <div class="col-<?php echo $col; ?>">
-                                        <button data-user="<?php echo $value->id; ?>"  class="delete-btn btn-block btn btn-small btn-danger"><i class="fas fa-trash"></i></button>
+                                        <button data-name="<?php echo $value->name; ?>" data-user="<?php echo $value->id; ?>"  class="delete-btn btn-block btn btn-small btn-danger"><i class="fas fa-trash"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -229,7 +233,7 @@
 
                                             echo base_url('/Dashboard/user/' . $typeslug . '/' . $value->slug); ?>" class="btn btn-small btn-info"><i class="fas fa-user-edit"></i></a>
 
-                            <button class="delete-btn btn btn-small btn-danger"><i class="fas fa-trash"></i></button>
+                            <button data-name="<?php echo $value->name; ?>" data-user="<?php echo $value->id; ?>"  class="delete-btn btn btn-small btn-danger"><i class="fas fa-trash"></i></button>
 
                         </td>
                     </tr>

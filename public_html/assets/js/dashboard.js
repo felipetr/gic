@@ -20,6 +20,21 @@ $(function () {
         $('#NewPassModal').modal('show');
 
     }));
+
+
+    $(".delete-btn").on('click', (function (e) {
+        var datauser = $(this).data('user');
+        var datausername = $(this).data('name');
+   
+        $('#DeleteUserModal #iduser').val(datauser);
+        $('#DeleteUserModal .nameofuser').text(datausername);
+        $('#DeleteUserModal #alertbox').hide();
+        $('#DeleteUserModal').modal('show');
+
+    }));
+
+
+
     $(".idcard-btn").on('click', (function (e) {
         var datauser = $(this).data('user');
         var datausername = $(this).data('name');
@@ -453,26 +468,11 @@ $(function () {
                             $('#newuserform #alertbox .alert').html(textodealerta).removeClass('alert-info').addClass('alert-warning').removeClass('alert-danger').removeClass('alert-success');
                         }
                         else if (returndata['status'] == 'success') {
-                            var close = returndata['validacao'];
-                            if (close) {
-                                //window.location.href = returndata['validacao'];
-                                var textodealerta = '<h3 class="p-0 m-0 text-center"><i class="fas fa-check-circle"></i></h3>';
-                                textodealerta += '<small class="d-block text-center"><b class="d-block text-center">Usuário registrado com sucesso!</small>';
-
-
-                                $('#newuserform #alertbox .alert').html(textodealerta).removeClass('alert-info').removeClass('alert-warning').addClass('alert-danger').removeClass('alert-success');
-
-
-
-                            } else {
-                                var textodealerta = '<h3 class="p-0 m-0 text-center"><i class="fas fa-check-circle"></i></h3>';
-                                textodealerta += '<small class="d-block text-center"><b class="d-block text-center">Usuário registrado com sucesso!</small>';
-
-
-                                $('#newuserform #alertbox .alert').html(textodealerta).removeClass('alert-info').removeClass('alert-warning').addClass('alert-danger').removeClass('alert-success');
-
-
-                            }
+                         
+                                window.location.href = returndata['validacao'];
+            
+                               
+                            
                         } else {
                             var textodealerta = '<h3 class="p-0 m-0 text-center"><i class="fas fa-exclamation-triangle"></i></h3>';
                             textodealerta += '<small class="d-block text-center"><b class="d-block text-center">Ocorreu um erro ao conectar!</b>Por favor tente mais tarde!</small>';
@@ -505,6 +505,102 @@ $(function () {
 
                 }
             });
+            $('#saveandclose').val('false');
+        }, 300);
+
+        
+        return false;
+    });
+    
+    $("#edituserform").submit(function () {
+
+
+
+        $('#edituserform #alertbox').slideUp();
+
+        setTimeout(function () {
+            var textodealerta = '<h3 class="p-0 m-0 text-center"><i class="fas fa-circle-notch fa-spin"></i></h3>';
+            textodealerta += '<small class="d-block text-center"><b class="d-block text-center">Salvando...</b></small>';
+            $('#edituserform #alertbox .alert').html(textodealerta).addClass('alert-info').removeClass('alert-warning').removeClass('alert-danger').removeClass('alert-success');
+
+
+
+
+            $('#edituserform #alertbox').slideDown();
+
+
+            var formData = new FormData($('#edituserform')[0]);
+            formData.append('url', window.location.href);
+
+
+            $.ajax({
+                url: base_url + "/Save/edituser",
+                type: "POST",
+                data: formData,
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function (data) {
+                    console.log(data);
+                    try {
+                        returndata = JSON.parse(data);
+
+                        if (returndata['status'] == 'warning') {
+                            var textodealerta = '<h3 class="p-0 m-0 text-center"><i class="fas fa-exclamation-triangle"></i></h3>';
+                            textodealerta += '<small class="d-block text-center">' + returndata['validacao'] + '</small>';
+
+                            $('#edituserform #alertbox .alert').html(textodealerta).removeClass('alert-info').addClass('alert-warning').removeClass('alert-danger').removeClass('alert-success');
+                        }
+                        else if (returndata['status'] == 'success') {
+                        
+if(returndata['validacao'])		
+{				
+                                window.location.href = returndata['validacao'];
+ }else
+{
+   var textodealerta = '<h3 class="p-0 m-0 text-center"><i class="fas fa-check"></i></h3>';
+                            textodealerta += '<small class="d-block text-center"><b class="d-block text-center">Alteração concluída com sucesso!';
+
+
+                            $('#edituserform #alertbox .alert').html(textodealerta).removeClass('alert-info').removeClass('alert-warning').removeClass('alert-danger').addClass('alert-success');
+
+} 
+                        
+                               
+                            
+                        } else {
+                            var textodealerta = '<h3 class="p-0 m-0 text-center"><i class="fas fa-exclamation-triangle"></i></h3>';
+                            textodealerta += '<small class="d-block text-center"><b class="d-block text-center">Ocorreu um erro ao conectar!</b>Por favor tente mais tarde!</small>';
+
+
+                            $('#edituserform #alertbox .alert').html(textodealerta).removeClass('alert-info').removeClass('alert-warning').addClass('alert-danger').removeClass('alert-success');
+
+                        }
+
+                    } catch (e) {
+
+                        var textodealerta = '<h3 class="p-0 m-0 text-center"><i class="fas fa-exclamation-triangle"></i></h3>';
+                        textodealerta += '<small class="d-block text-center"><b class="d-block text-center">Ocorreu um erro ao conectar!</b>Por favor tente mais tarde!</small>';
+
+
+                        $('#edituserform #alertbox .alert').html(textodealerta).removeClass('alert-info').removeClass('alert-warning').addClass('alert-danger').removeClass('alert-success');
+
+
+                    }
+
+
+                },
+                error: function (e) {
+                    var textodealerta = '<h3 class="p-0 m-0 text-center"><i class="fas fa-exclamation-triangle"></i></h3>';
+                    textodealerta += '<small class="d-block text-center"><b class="d-block text-center">Ocorreu um erro ao conectar!</b>Por favor tente mais tarde!</small>';
+
+
+                    $('#edituserform #alertbox .alert').html(textodealerta).removeClass('alert-info').removeClass('alert-warning').addClass('alert-danger').removeClass('alert-success');
+
+
+                }
+            });
+            $('#saveandclose').val('false');
         }, 300);
 
         return false;
@@ -534,6 +630,88 @@ $(function () {
             $('#capaform input').click();
         }));
     });
+
+    $("#removeuserform").submit(function () {
+
+
+
+
+        $('#removeuserform #alertbox').slideUp();
+
+        setTimeout(function () {
+            var textodealerta = '<h3 class="p-0 m-0 text-center"><i class="fas fa-circle-notch fa-spin"></i></h3>';
+            textodealerta += '<small class="d-block text-center"><b class="d-block text-center">Conectando...</b></small>';
+            $('#removeuserform #alertbox .alert').html(textodealerta).addClass('alert-info').removeClass('alert-warning').removeClass('alert-danger').removeClass('alert-success');
+
+            $('#removeuserform #alertbox').slideDown();
+            setTimeout(function () {
+             
+
+
+                
+                    var formData = new FormData($('#removeuserform')[0]);
+                    $.ajax({
+                        url: base_url + '/Save/removeuser',
+                        type: 'POST',
+                        data: formData,
+                        async: true,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        error: function (result) {
+                            var textodealerta = '<h3 class="p-0 m-0 text-center"><i class="fas fa-exclamation-triangle"></i></h3>';
+                            textodealerta += '<small class="d-block text-center"><b class="d-block text-center">Ocorreu um erro ao conectar!</b>Por favor tente mais tarde!</small>';
+
+
+                            $('#removeuserform #alertbox .alert').html(textodealerta).removeClass('alert-info').removeClass('alert-warning').addClass('alert-danger').removeClass('alert-success');
+                        },
+                        success: function (returndata) {
+
+                            try {
+                                returndata = JSON.parse(returndata);
+
+
+                                var tipo = returndata.status;
+
+                                if (tipo == 'success') {
+
+                                   var userid = returndata.validacao;
+
+                                    $('#DeleteUserModal').modal('hide');
+                                    $('#user-'+userid).remove();
+                                  
+
+                                } else {
+                                    var textodealerta = '<small><b class="d-block text-center">Aviso!</b>';
+                                    textodealerta += '<ul class="m-0 p-0 pl-3">';
+                                    textodealerta += returndata.validacao;
+                                    textodealerta += '</ul></small>';
+
+                                    $('#removeuserform #alertbox .alert').html(textodealerta).removeClass('alert-info').addClass('alert-warning').removeClass('alert-danger').removeClass('alert-success');
+
+                                }
+                            } catch (e) {
+
+                                var textodealerta = '<h3 class="p-0 m-0 text-center"><i class="fas fa-exclamation-triangle"></i></h3>';
+                                textodealerta += '<small class="d-block text-center"><b class="d-block text-center">Ocorreu um erro ao conectar!</b>Por favor tente mais tarde!</small>';
+
+
+                                $('#removeuserform #alertbox .alert').html(textodealerta).removeClass('alert-info').removeClass('alert-warning').addClass('alert-danger').removeClass('alert-success');
+
+                            }
+
+                        }
+                    });
+                
+
+            }, 300);
+        }, 300);
+        return false;
+
+
+
+    });
+
     $("#changepassuser").submit(function () {
 
 
@@ -548,9 +726,7 @@ $(function () {
 
             $('#changepassuser #alertbox').slideDown();
             setTimeout(function () {
-                $('#loginform .input-group input').removeClass("border-danger");
-                $('.chamaseta').addClass('bg-info').addClass('border-info').removeClass("bg-danger").removeClass("border-danger");
-
+               
 
 
                 var validacao = '';

@@ -78,6 +78,17 @@ if ($user->type == 4) {
 
 	echo '<b>Avaliação:</b> <span class="badge bg-'.$status.'">' . $avalianum . '</span>';
 	echo '<hr>';
+	
+	if ($user->folio) {
+	echo '<b>Portfólio:</b> <a class="text-warning" href="' . $user->folio . '" target="_blank" >' . $user->folio . '</a>';
+	echo '<hr>';
+	}
+	
+	
+	if ($user->cv) {
+	echo '<b>Currículo:</b> <a class="badge btn-warning btn-small" href="'.base_url('/CV/download/'.$user->slug).'" target="_blank" >Baixar</a>';
+	echo '<hr>';
+	}
 
 }
 

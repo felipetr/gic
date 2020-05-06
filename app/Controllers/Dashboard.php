@@ -508,6 +508,13 @@ class Dashboard extends BaseController
       $db = db_connect();
 
       if ($session->get('logged')->type < 2) {
+        $sql = "SELECT * FROM hw_users WHERE type = ? AND status = 0";
+        $query = $db->query($sql, 4);
+        $cardcounter['profisionaisna'] = 0;
+        if ($query) {
+          $cardcounter['profisionaisna'] = count($query->getResult());
+        }
+
         $sql = "SELECT * FROM hw_users WHERE type = ?";
         $query = $db->query($sql, 3);
         $cardcounter['clientes'] = 0;
@@ -543,7 +550,7 @@ class Dashboard extends BaseController
         }
 
         $sql = "SELECT * FROM hw_projects";
-        $query = $db->query($sql, 4);
+        $query = $db->query($sql);
         $cardcounter['projetos'] = 0;
         if ($query) {
           $cardcounter['projetos'] = count($query->getResult());
@@ -1116,7 +1123,7 @@ class Dashboard extends BaseController
 
 
 
-
+          $data['modals'] = view('items/usersmodals');
           $data['content'] = view('pages/dashboard/users', $data);
           echo view('templates/dashboard', $data);
         } else {
@@ -1274,7 +1281,7 @@ class Dashboard extends BaseController
 
 
 
-
+          $data['modals'] = view('items/usersmodals');
           $data['content'] = view('pages/dashboard/users', $data);
           echo view('templates/dashboard', $data);
         } else {
@@ -1430,7 +1437,7 @@ class Dashboard extends BaseController
           $data['workarea'] = $query->getResult();
 
 
-
+          $data['modals'] = view('items/usersmodals');
 
           $data['content'] = view('pages/dashboard/users', $data);
           echo view('templates/dashboard', $data);
@@ -1507,7 +1514,8 @@ class Dashboard extends BaseController
 
 
 
-          $data['query'] = $query->getResult();
+          $data['query'] = $query->getResult()[0];
+
           $data['title'] = "Editar " . $data['title'];
           $data['content'] = view('pages/dashboard/edituser', $data);
         }

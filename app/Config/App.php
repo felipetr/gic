@@ -21,7 +21,7 @@ class App extends BaseConfig
 	| environments.
 	|
 	*/
-	public $baseURL = 'http://localhost/projetos/gerensbios/gerens-bios/public_html/';
+	public $baseURL = 'http://192.168.1.3/projetos/gerensbios/gic/public_html/';
 
 	/*
 	|--------------------------------------------------------------------------

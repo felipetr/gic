@@ -18,6 +18,27 @@ header {
 {
     position: relative;
 }
+.sortablelist
+{
+    padding: 0 !important;
+    margin: 0 !important;
+    position: relative;
+}
+.sortablelist .realul
+{
+    position: relative;
+    z-index: 10;
+}
+.alert-warning-color {
+    color: #856404 !important;
+}
+.sortablelist .realul.carregado
+{
+    z-index: 11;
+    position: absolute !important;
+    width: 100%;
+    
+}
 .fakelist
 {
     background: #fff;
@@ -190,10 +211,14 @@ footer {
 .bg-danger.chamaseta::after {
     border-color: transparent #dc3545 transparent transparent !important;
 }
-div.btn
+div.btn, span.btn
 {
     user-select: text !important;
     cursor: text !important;
+}
+.btn.alert-warning {
+
+    color: #856404 !important;
 }
 @media (max-width: 1199px) {}
 
