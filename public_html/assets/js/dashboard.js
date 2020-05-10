@@ -3,7 +3,15 @@ $(function () {
 
     $("#removebriefform").submit(function () {
 
-
+        $('.mobile').mask('00 0 0000.0000');
+        $('.onlynumbers').mask('000000000000000000000000000000');
+        $('.date').mask('00/00/0000');
+        $('.summernote').summernote();
+        $('.addresssummernote').summernote({
+            height: 100,
+            toolbar: false
+        });
+    
 
 
         $('#removebriefform #alertbox').slideUp();
@@ -81,7 +89,7 @@ $(function () {
 
 
     });
-    
+
     $('#newbriefform').on('submit', (function (e) {
         e.preventDefault();
      
@@ -200,14 +208,7 @@ $(function () {
     }));
 
 
-    $('.mobile').mask('00 0 0000.0000');
-    $('.onlynumbers').mask('000000000000000000000000000000');
-    $('.summernote').summernote();
-    $('.addresssummernote').summernote({
-        height: 100,
-        toolbar: false
-    });
-
+  
 
     $(".password-btn").on('click', (function (e) {
         var datauser = $(this).data('user');
@@ -670,7 +671,7 @@ $(function () {
                         }
                         else if (returndata['status'] == 'success') {
 
-                            window.location.href = returndata['validacao'];
+                           window.location.href = returndata['validacao'];
 
 
 

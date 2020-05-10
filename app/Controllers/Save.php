@@ -801,7 +801,7 @@ class Save extends BaseController
                             if ($data['type'] == 1) {
                                 $typeofuser = 'admin';
                             }
-                            $resp['validacao'] = base_url('/Dashboard') . '/user/' . $typeofuser . '/' . $userslug;
+                            $resp['validacao'] = base_url('/Dashboard') . '/user/' . $typeofuser . '/' . $data['slug'];
                         }
                         header('Content-Type: application/json');
                         echo json_encode($resp);

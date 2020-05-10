@@ -55,7 +55,24 @@ if ($user->type == 4) {
 			echo '-' . $user->contad;
 		}
 		echo '<br>';
-		echo '<b>Tipo:</b> ' . $user->tipoconta . '<br>';
+		$tipoconta = "Poupança";
+		if($user->tipoconta == 'CC')
+		{
+			$tipoconta = "Corrente";
+		}
+		if($user->tipoconta == 'CU')
+		{
+			$tipoconta = "Universitária";
+		}
+		if($user->tipoconta == 'CD')
+		{
+			$tipoconta = "Digital";
+		}
+		if($user->tipoconta == 'CD')
+		{
+			$tipoconta = "Salário";
+		}
+		echo '<b>Tipo:</b> ' . $tipoconta . '<br>';
 	
 		echo '<hr>';
 	}
