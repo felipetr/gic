@@ -193,7 +193,7 @@
 
                                             ?>
                                         <div class="col-3">
-                                            <button data-user="<?php echo $value->id; ?>" data-name="<?php echo $value->name; ?>" class="idcard-btn btn btn-small btn-block btn-dark text-warning"><i class="fas fa-id-card"></i></button>
+                                            <button data-user="<?php echo $value->id; ?>" data-name="<?php echo $value->name; ?>"  data-type="user" class="idcard-btn btn btn-small btn-block btn-dark text-warning"><i class="fas fa-id-card"></i></button>
 
 
                                         </div>
@@ -221,7 +221,7 @@
                         <td class="hidden-sm text-right">
 
 
-                            <button data-user="<?php echo $value->id; ?>" data-name="<?php echo $value->name; ?>" class="idcard-btn btn btn-small  btn-dark text-warning"><i class="fas fa-id-card"></i></button>
+                            <button data-user="<?php echo $value->id; ?>" data-name="<?php echo $value->name; ?>"  data-type="user" class="idcard-btn btn btn-small  btn-dark text-warning"><i class="fas fa-id-card"></i></button>
                             <button data-user="<?php echo $value->id; ?>" class="password-btn btn btn-small  btn-warning"><i class="fas fa-key"></i></button>
 
 

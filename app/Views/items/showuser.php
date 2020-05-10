@@ -94,9 +94,9 @@ if ($user->type == 4) {
 
 
 $date = new DateTime($user->created_at);
-echo '<b>Criado em: </b>' . $date->format('d/m/Y h:i:s');;
+echo '<b>Criado em: </b>' . $date->format('d/m/Y H:i:s');;
 echo '<hr>';
 
 $date = new DateTime($user->updated_at);
-echo '<b>Última alteração: </b>' . $date->format('d/m/Y h:i:s');;
+echo '<b>Última alteração: </b>' . $date->format('d/m/Y H:i:s');;
 echo '<hr>';

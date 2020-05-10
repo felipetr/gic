@@ -5,6 +5,171 @@ namespace App\Controllers;
 
 class Save extends BaseController
 {
+
+
+    public function removebrief()
+    {
+        $session = session();
+
+        if (!$session->get('logged')) { } else {
+            if ($session->get('logged')->type < 2) {
+
+              
+
+                $id = $_POST['iduser'];
+                $data = $_POST;
+                $db = db_connect();
+
+            
+                    $sql = "DELETE FROM hw_briefings WHERE id = ?";
+                
+
+                   
+
+                $query = $db->query($sql, [$id]);
+
+                
+                $response = [];
+                $response['status'] = 'success';
+                $response['validacao'] = $id;
+
+                header('Content-Type: application/json');
+                echo json_encode($response);
+            }
+        }
+    }
+
+    public function editbrief()
+    {
+        $session = session();
+
+        if (!$session->get('logged')) { } else {
+            if ($session->get('logged')->type < 2) {
+
+                $data = $_POST;
+
+                $while = $data['question'];
+                $response = [];
+                $response['validacao'] = '';
+                $response['status'] = 'success';
+                if (!$data['question']) {
+                    $response['status'] = 'warning';
+                    $response['validacao'] = 'Crie, ao menos, uma pergunta!';
+                } else {
+
+                    $question = implode('", "', $while);
+                    $question = '["' . $question . '"]';
+
+                    $name = $data['name'];
+
+                    
+
+                    $sql = " UPDATE hw_briefings
+                    Set  
+                        name = ?,
+                       questions = ?
+                       
+                       WHERE slug = ?
+                   ";
+                    $db = db_connect();
+
+
+                    $query = $db->query($sql, [
+                        $data['name'],
+                        $question,
+                        $data['iduser']
+                    ]);
+                }
+                if ($response['status'] == 'success') {
+                    $response['validacao'] = '';
+                    if ($data['saveandclose'] == 'true') {
+
+                        $response['validacao'] = base_url('/Dashboard/briefings') . '/list';
+                        
+                    }
+                }
+                header('Content-Type: application/json');
+                echo json_encode($response);
+            }
+        }
+    }
+
+    public function newbrief()
+    {
+        $session = session();
+
+        if (!$session->get('logged')) { } else {
+            if ($session->get('logged')->type < 2) {
+
+                $data = $_POST;
+
+                $while = $data['question'];
+                $response = [];
+                $response['validacao'] = '';
+                $response['status'] = 'success';
+                if (!$data['question']) {
+                    $response['status'] = 'warning';
+                    $response['validacao'] = 'Crie, ao menos, uma pergunta!';
+                } else {
+
+                    $question = implode('", "', $while);
+                    $question = '["' . $question . '"]';
+
+                    $name = $data['name'];
+
+                    helper('siteconfig');
+                    $data['slug'] = hw_slug($data['name']);
+
+
+                    $sql = "SELECT * FROM hw_briefings WHERE slug = ?";
+
+                    $db = db_connect();
+                    $query = $db->query($sql, [$data['slug']]);
+                    $count = count($query->getResult());
+
+                    $total = 1;
+                    for ($i = 0; $i < 1; $i) {
+
+                        $sql = "SELECT * FROM hw_briefings WHERE slug = ?";
+
+                        $query = $db->query($sql, [$data['slug']]);
+                        $count = count($query->getResult());
+
+                        if ($count) {
+                            $data['slug'] =    $data['slug'] . '-' . $total;
+                            $i = 0;
+                        } else {
+                            $i = 1;
+                        }
+
+                        $total++;
+                    }
+
+
+
+                    $sql = "INSERT INTO hw_briefings (
+                        name, slug, questions)  VALUES  (?, ?, ?)";
+
+
+                    $query = $db->query($sql, [
+                        $data['name'],
+                        $data['slug'],
+                        $question
+                    ]);
+                }
+                if ($response['status'] == 'success') {
+                    $response['validacao'] = base_url('/Briefing/edit') . '/'.$data['slug'];
+                    if ($data['saveandclose'] == 'true') {
+
+                        $response['validacao'] = base_url('/Dashboard/briefings') . '/list';
+                        
+                    }
+                }
+                header('Content-Type: application/json');
+                echo json_encode($response);
+            }
+        }
+    }
     public function editwa()
     {
         $session = session();
@@ -36,45 +201,45 @@ class Save extends BaseController
                 $data['name'] = $data['waname'];
                 helper('siteconfig');
                 $data['slug'] = hw_slug($data['name']);
-               
+
                 if ($data['type'] == 4) {
                     $sql = "SELECT * FROM hw_workarea_professionals WHERE slug = ?";
                 }
-                if ($data['type'] == 3) {                                                                                  
+                if ($data['type'] == 3) {
                     $sql = "SELECT * FROM hw_workarea_costumers WHERE slug = ?";
                 }
-                
-                
+
+
                 $db = db_connect();
                 $query = $db->query($sql, [$data['slug']]);
                 $count = count($query->getResult());
-                
-                
+
+
                 $total = 1;
-                    for ($i = 0; $i < 1; $i) {
+                for ($i = 0; $i < 1; $i) {
 
-                        if ($data['type'] == 4) {
-                            $sql = "SELECT * FROM hw_workarea_professionals WHERE slug = ?";
-                        }
-                        if ($data['type'] == 3) {
-                            $sql = "SELECT * FROM hw_workarea_costumers WHERE slug = ?";
-                        }
-                        $query = $db->query($sql, [$data['slug']]);
-                        $count = count($query->getResult());
+                    if ($data['type'] == 4) {
+                        $sql = "SELECT * FROM hw_workarea_professionals WHERE slug = ?";
+                    }
+                    if ($data['type'] == 3) {
+                        $sql = "SELECT * FROM hw_workarea_costumers WHERE slug = ?";
+                    }
+                    $query = $db->query($sql, [$data['slug']]);
+                    $count = count($query->getResult());
 
-                        if ($count) {
-                            $data['slug'] =    $data['slug'] . '-' . $total;
-                            $i = 0;
-                        } else {
-                            $i = 1;
-                        }
-
-                        $total++;
+                    if ($count) {
+                        $data['slug'] =    $data['slug'] . '-' . $total;
+                        $i = 0;
+                    } else {
+                        $i = 1;
                     }
 
+                    $total++;
+                }
 
 
-               
+
+
                 if ($data['type'] == 4) {
                     $sql = "INSERT INTO hw_workarea_professionals (
                     name, slug)  VALUES  (?, ?)";
@@ -99,10 +264,10 @@ class Save extends BaseController
                     $sql = "SELECT * FROM hw_workarea_costumers WHERE slug = ?";
                 }
 
-                    $query = $db->query($sql, [$data['slug']]);
+                $query = $db->query($sql, [$data['slug']]);
 
-                    $while = $query->getResult();
-                    $user = $while[0];
+                $while = $query->getResult();
+                $user = $while[0];
 
                 $obj = '<li id="wa-' . $user->id . '" data-name="' . $user->name . '" data-id="' . $user->id . '" class="btn alert-warning realul d-block mb-2 text-left" data-slug="' .  $user->slug . '">
                 <span class="btn"><span class="username">' . $user->name . '</span>
@@ -181,15 +346,15 @@ class Save extends BaseController
 
                 $db = db_connect();
                 if ($data['type'] == 4) {
-                
+
                     $sql = "DELETE FROM hw_workarea_professionals WHERE id = ?";
                 }
                 if ($data['type'] == 3) {
                     $sql = "DELETE FROM hw_workarea_costumers WHERE id = ?";
                 }
-               
+
                 $query = $db->query($sql, [$id]);
-              
+
                 $response = [];
                 $response['status'] = 'success';
                 $response['validacao'] = $id;
@@ -365,7 +530,7 @@ class Save extends BaseController
                     if ($data['type'] == 1) {
                         $typeofuser = 'admins';
                     }
-                    if ($data['saveandclose'] == true) {
+                    if ($data['saveandclose'] == 'true') {
 
                         $resp['validacao'] = base_url('/Dashboard') . '/' . $typeofuser . '/list';
                     }
@@ -489,7 +654,7 @@ class Save extends BaseController
                     $query = $db->query($sql, [$data['slug']]);
                     $count = count($query->getResult());
 
-                  
+
 
 
                     $total = 1;
@@ -621,7 +786,7 @@ class Save extends BaseController
                         if ($data['type'] == 1) {
                             $typeofuser = 'admins';
                         }
-                        if ($data['saveandclose'] == true) {
+                        if ($data['saveandclose'] == 'true') {
 
 
                             $resp['validacao'] = base_url('/Dashboard') . '/' . $typeofuser . '/list';

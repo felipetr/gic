@@ -8,6 +8,85 @@ class Dashboard extends BaseController
 {
 
 
+  public function briefings($bar1)
+  {
+    $session = session();
+    if (!$session->get('logged')) {
+      return redirect()->to(base_url());
+    } else {
+      if ($bar1 == 'list' && $session->get('logged')->type < 2) {
+        $data['logged'] = $session->get('logged');
+
+        $filters = array();
+        $filtersvar = array();
+
+
+
+        if ($_POST['search']) {
+          $data['search'] = $_POST['search'];
+
+          $search = strtolower($data['search']);
+
+
+          array_push($filters, '(LOWER(name) LIKE ? OR LOWER(questions) LIKE ?)');
+          array_push($filtersvar, '%' . $search . '%');
+          array_push($filtersvar, '%' . $search . '%');
+        }
+
+
+        if ($filters) {
+          $filtroquery = ' WHERE ' . implode(' AND ', $filters);
+        }
+
+
+
+        $db = db_connect();
+        $dataquery = 'SELECT * FROM hw_briefings ' . $filtroquery . ' ORDER BY created_at;';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        $query = $db->query($dataquery, $filtersvar);
+        $data['query'] = $query->getResult();
+
+        $data['filtroquery'] =  $dataquery;
+
+        $while = $query->getResult();
+
+
+        foreach ($while as $key => $result) {
+
+          $bid = $result->id;
+          $db = db_connect();
+          $sql = 'SELECT * FROM hw_projects WHERE briefing = ?';
+          $query2 = $db->query($sql, [$bid]);
+          $while[$key]->cont = count($query2->getResult());
+        }
+
+
+        $data['query'] = $while;
+
+
+        $data['title'] = 'Briefings';
+        $data['icon'] = 'briefcase';
+        $data['modals'] = view('items/briefingsmodals');
+
+        $data['content'] = view('pages/dashboard/briefings', $data);
+        echo view('templates/dashboard', $data);
+      }
+    }
+  }
   public function encrypter()
   {
     $text = md5($_POST['pass']);
@@ -233,7 +312,6 @@ class Dashboard extends BaseController
           $query = $db->query($sql, [$newpass, $id]);
           $sql = "UPDATE hw_users SET updated_at = NOW() WHERE id = ?";
           $query = $db->query($sql, [$id]);
-      
         }
         $response = [];
         $response['status'] = $status;
@@ -364,7 +442,6 @@ class Dashboard extends BaseController
           $query = $db->query($sql, [$newpass, $id]);
           $sql = "UPDATE hw_users SET updated_at = NOW() WHERE id = ?";
           $query = $db->query($sql, [$id]);
-          
         }
         $response = [];
         $response['status'] = $status;
@@ -584,51 +661,85 @@ class Dashboard extends BaseController
         $iduser = $_POST['iduser'];
 
         $db = db_connect();
+        $type = $_POST['type'];
+        if ($type == 'briefing') {
+          $sql = "SELECT * FROM hw_briefings WHERE id = ?";
+          $query = $db->query($sql, $iduser);
+          if (count($query->getResult())) {
 
-        $sql = "SELECT * FROM hw_users WHERE id = ?";
-        $query = $db->query($sql, $iduser);
-        $count = count($query->getResult());
-
-        $tablewa = 'hw_workarea_professionals';
-
-
-
+            $while = $query->getResult()[0];
 
 
+            $projetos = [];
 
 
+       
 
+              $bid = $while->id;
+              $db = db_connect();
+              $sql = 'SELECT * FROM hw_projects WHERE briefing = ?';
+              $query2 = $db->query($sql, [$bid]);
+              $while->cont = count($query2->getResult());
+              $while->projects = $query2->getResult();
 
-        if ($count == 1) {
-          $data['user'] = $query->getResult()[0];
-          $data['typeuser'] = $data['user']->type;
-          if ($data['typeuser'] == 3) {
-            $tablewa = 'hw_workarea_costumers';
+              
+           
+
+            $data['brief'] = $while;
+            try {
+              echo view('items/showbrief', $data);
+            }
+            catch(Exception $e) {
+              echo '<div class="alert alert-danger">';
+            echo    '<h3 class="p-0 m-0 text-center"><i class="fas fa-exclamation-triangle"></i></h3>';
+            echo '<small class="d-block text-center"><b class="d-block text-center">Houve um erro ao acessar os dados, por favor tente mais tarde!</b></small>';
+
+            echo '</div>';
+            }
+
+          } else {
+            echo '<div class="alert alert-danger">';
+            echo    '<h3 class="p-0 m-0 text-center"><i class="fas fa-exclamation-triangle"></i></h3>';
+            echo '<small class="d-block text-center"><b class="d-block text-center">Houve um erro ao acessar os dados, por favor tente mais tarde!</b></small>';
+
+            echo '</div>';
           }
+        } elseif ($type == 'user') {
+          $sql = "SELECT * FROM hw_users WHERE id = ?";
+          $query = $db->query($sql, $iduser);
+          $count = count($query->getResult());
 
-          $sql2 = "SELECT * FROM " . $tablewa . " ORDER BY sort";
-         
-         $query2 = $db->query($sql2);
-         $workarea = $query2->getResult();
-     
+          $tablewa = 'hw_workarea_professionals';
 
-          
-          foreach ($workarea as $key => $result) {
-            $slug = $result->slug;
-            $name = $result->name;
-            $workareaar[$slug] = $name;
-            
-            
-           }
-           $data['workarea'] =   $workareaar;
+          if ($count == 1) {
+            $data['user'] = $query->getResult()[0];
+            $data['typeuser'] = $data['user']->type;
+            if ($data['typeuser'] == 3) {
+              $tablewa = 'hw_workarea_costumers';
+            }
 
-          echo view('items/showuser', $data);
-        } else {
-          echo '<div class="alert alert-danger">';
-          echo    '<h3 class="p-0 m-0 text-center"><i class="fas fa-exclamation-triangle"></i></h3>';
-          echo '<small class="d-block text-center"><b class="d-block text-center">Houve um erro ao acessar os dados, por-favor tente mais tarde!</b></small>';
+            $sql2 = "SELECT * FROM " . $tablewa . " ORDER BY sort";
 
-          echo '</div>';
+            $query2 = $db->query($sql2);
+            $workarea = $query2->getResult();
+
+
+
+            foreach ($workarea as $key => $result) {
+              $slug = $result->slug;
+              $name = $result->name;
+              $workareaar[$slug] = $name;
+            }
+            $data['workarea'] =   $workareaar;
+
+            echo view('items/showuser', $data);
+          } else {
+            echo '<div class="alert alert-danger">';
+            echo    '<h3 class="p-0 m-0 text-center"><i class="fas fa-exclamation-triangle"></i></h3>';
+            echo '<small class="d-block text-center"><b class="d-block text-center">Houve um erro ao acessar os dados, por favor tente mais tarde!</b></small>';
+
+            echo '</div>';
+          }
         }
       }
     }

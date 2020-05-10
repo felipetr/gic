@@ -113,12 +113,12 @@
                             <?php } ?>
                             <li class="nav-item dropdown">
 
-                                <a class="nav-link dropdown-toggle" href="#" id="breafingDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Breafings
+                                <a class="nav-link dropdown-toggle" href="#" id="briefingDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Briefings
                                 </a>
-                                <div class="dropdown-menu bg-dark" aria-labelledby="breafingDropdown">
-                                    <a class="dropdown-item" href="<?php echo base_url('/Dashboard/breafings/list'); ?>"><i class="fas fa-bars"></i> Lista de Breafings</a>
-                                    <a class="dropdown-item" href="<?php echo base_url('/Dashboard/breafing/new'); ?>"><i class="fas fa-plus"></i> Novo Breafing</a>
+                                <div class="dropdown-menu bg-dark" aria-labelledby="briefingDropdown">
+                                    <a class="dropdown-item" href="<?php echo base_url('/Dashboard/briefings/list'); ?>"><i class="fas fa-bars"></i> Lista de Briefings</a>
+                                    <a class="dropdown-item" href="<?php echo base_url('/Briefing/new'); ?>"><i class="fas fa-plus"></i> Novo Briefing</a>
                                 </div>
                             </li>
                         <?php } ?>
