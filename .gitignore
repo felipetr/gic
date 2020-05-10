@@ -60,8 +60,7 @@ writable/session/*
 writable/uploads/*
 !writable/uploads/index.html
 
-app/Config/*
-app/Config/*
+app/Config/* 
 
 writable/debugbar/*
 
