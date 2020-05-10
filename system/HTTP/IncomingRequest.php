@@ -609,6 +609,7 @@ class IncomingRequest extends Request
 		// baseURL, so let's help them out.
 		$baseURL = ! empty($baseURL) ? rtrim($baseURL, '/ ') . '/' : $baseURL;
 
+
 		// Based on our baseURL provided by the developer
 		// set our current domain name, scheme
 		if (! empty($baseURL))
