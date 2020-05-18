@@ -19,9 +19,7 @@
 	 </pre>
 	 <select name="costumer" class="custom-select" required>
                         <option></option>
-                        <?php foreach ($costumers as &$value) { ?>
-                            <option value="<?php echo $value->slug; ?>"><?php echo $value->name; ?></option>
-                        <?php } ?>
+                     
      </select>
      </div>
      <div class="col-12 col-md-6 col-lg-3">
