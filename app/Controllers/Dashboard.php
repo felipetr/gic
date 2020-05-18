@@ -781,7 +781,7 @@ class Dashboard extends BaseController
     $redirect = '';
     if(isset($_GET['redirect']))
     {
-      $redirect = $_GET['redirect']
+      $redirect = $_GET['redirect'];
     }
 
     echo '<script>
