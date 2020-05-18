@@ -185,7 +185,7 @@
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="<?php echo base_url('/Dashboard/profile'); ?>"><i class="fas fa-user"></i> Meu Perfil</a>
 
-                                    <a class="dropdown-item" href="<?php echo base_url('/Dashboard/logout?redirect='.$_SERVER['PHP_SELF']);
+                                    <a class="dropdown-item" href="<?php echo base_url('/Dashboard/logout?redirect='.$_SERVER['REQUEST_URI']);
 
 
 									?>"><i class="fas fa-sign-out-alt"></i> Sair</a>
