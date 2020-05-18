@@ -12,7 +12,7 @@ class Dashboard extends BaseController
   {
     $session = session();
     if (!$session->get('logged')) {
-      return redirect()->to(base_url());
+      return redirect()->to(base_url().'?redirect='.$_SERVER['PHP_SELF']);
     } else {
       if ($bar1 == 'list' && $session->get('logged')->type < 2) {
         $data['logged'] = $session->get('logged');
@@ -209,7 +209,7 @@ class Dashboard extends BaseController
   {
     $session = session();
     if (!$session->get('logged')) {
-      return redirect()->to(base_url());
+      return redirect()->to(base_url().'?redirect='.$_SERVER['PHP_SELF']);
     } else {
       if ($session->get('logged')->type < 5) {
         $newpass =  $_POST['newpass'];
@@ -328,7 +328,7 @@ class Dashboard extends BaseController
     $session = session();
     if (!$session->get('logged')) {
 
-      return redirect()->to(base_url());
+      return redirect()->to(base_url().'?redirect='.$_SERVER['PHP_SELF']);
     } else {
 
       if ($session->get('logged')->type < 2) {
@@ -457,7 +457,7 @@ class Dashboard extends BaseController
   public function savenewpassuser()
   {
     if (!$session->get('logged')) {
-      return redirect()->to(base_url());
+      return redirect()->to(base_url().'?redirect='.$_SERVER['PHP_SELF']);
     } else {
       $newpass =  $_POST['newpass'];
       $newpass2 =  $_POST['newpass2'];
@@ -578,7 +578,7 @@ class Dashboard extends BaseController
 
 
     if (!$session->get('logged')) {
-      return redirect()->to(base_url());
+      return redirect()->to(base_url().'?redirect='.$_SERVER['PHP_SELF']);
     } else {
 
 
@@ -754,7 +754,7 @@ class Dashboard extends BaseController
     $session = session();
 
     if (!$session->get('logged')) {
-      return redirect()->to(base_url());
+      return redirect()->to(base_url().'?redirect='.$_SERVER['PHP_SELF']);
     } else {
       helper('getmessages');
       $data['messages'] = getmessages($session->get('logged')->type);
@@ -778,12 +778,18 @@ class Dashboard extends BaseController
     $session = session();
     $session->destroy();
 
+    $redirect = '';
+    if(isset($_GET['redirect']))
+    {
+      $redirect = $_GET['redirect'];
+    }
+
     echo '<script>
     localStorage.setItem("email", "");
     localStorage.setItem("pass", "");
     setTimeout(function () {
-      window.location.href = "' . base_url() . '";
-    }, 300);
+      window.location.href = "' . base_url() . $redirect .'";
+    }, 200);
 
     </script>';
   }
@@ -916,7 +922,7 @@ class Dashboard extends BaseController
 
 
     if (!$session->get('logged')) {
-      return redirect()->to(base_url());
+      return redirect()->to(base_url().'?redirect='.$_SERVER['PHP_SELF']);
     } else {
       if ($bar1 == 'list') {
 
@@ -1073,7 +1079,7 @@ class Dashboard extends BaseController
 
 
     if (!$session->get('logged')) {
-      return redirect()->to(base_url());
+      return redirect()->to(base_url().'?redirect='.$_SERVER['PHP_SELF']);
     } else {
       if ($bar1 == 'list') {
 
@@ -1253,7 +1259,7 @@ class Dashboard extends BaseController
 
 
     if (!$session->get('logged')) {
-      return redirect()->to(base_url());
+      return redirect()->to(base_url().'?redirect='.$_SERVER['PHP_SELF']);
     } else {
       if ($bar1 == 'list') {
 
@@ -1409,7 +1415,7 @@ class Dashboard extends BaseController
 
 
     if (!$session->get('logged')) {
-      return redirect()->to(base_url());
+      return redirect()->to(base_url().'?redirect='.$_SERVER['PHP_SELF']);
     } else {
       if ($bar1 == 'list') {
 
@@ -1566,7 +1572,7 @@ class Dashboard extends BaseController
 
 
     if (!$session->get('logged')) {
-      return redirect()->to(base_url());
+      return redirect()->to(base_url().'?redirect='.$_SERVER['PHP_SELF']);
     } else {
       if ($session->get('logged')->type < 2) {
         $data['logged'] = $session->get('logged');

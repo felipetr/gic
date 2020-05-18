@@ -41,7 +41,13 @@
                 <button class="btn btn-warning btn-block">Validar</button>
             </div>
             <div class="col-12 pb-0 text-center text-md-left">
-                <a href="<?php echo base_url(""); ?>" class="text-white btn btn-link px-0 mx-0 text-md-left"> Logar-se </a>
+                <a href="<?php echo base_url(""); 
+				if(isset($_GET['redirect']))
+				{
+					echo '?redirect='.$_GET['redirect'];
+				}
+				
+				?>" class="text-white btn btn-link px-0 mx-0 text-md-left"> Logar-se </a>
             </div>
         </div>
     </form>

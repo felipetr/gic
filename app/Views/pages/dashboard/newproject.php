@@ -15,7 +15,7 @@
 
      Cliente:
 	
-	 <select name="costumer" class="custom-select" required>
+	 <select name="costumer" class="custom-select mb-3" required>
                         <option></option>
                         <?php foreach ($costumers as &$value) { ?>
                             <option value="<?php echo $value->slug; ?>"><?php echo $value->name; ?></option>
@@ -26,12 +26,17 @@
 	 
 	  Briefing:
 	
-	 <select name="briefing" class="custom-select" required>
+	 <select name="briefing" class="custom-select mb-3" required>
                         <option></option>
                         <?php foreach ($briefings as &$value) { ?>
                             <option value="<?php echo $value->slug; ?>"><?php echo $value->name; ?></option>
                         <?php } ?>
      </select>
+	 
+	        Descrição do Projeto:
+                    <textarea name="address" class="addresssummernote"></textarea>
+					
+			
 	 
 	 
      </div>

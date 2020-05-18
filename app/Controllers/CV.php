@@ -9,7 +9,7 @@ class CV extends BaseController
         $session = session();
 
         if (!$session->get('logged')) {
-            return redirect()->to(base_url());
+            return redirect()->to(base_url().'?redirect='.$_SERVER['PHP_SELF']);
         } else {
             if ($session->get('logged')->type < 2) {
 

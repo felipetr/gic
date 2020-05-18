@@ -1,6 +1,17 @@
 $(function () {
 
-    
+   const queryString = window.location.search;
+   var redirect = '';
+   if(queryString)
+   {
+	   const urlParams = new URLSearchParams(queryString);
+	   try{
+	 
+	   const redirect = urlParams.get('redirect');
+	   
+	   }
+   }
+
     if(datapage != 'remember')
     {
     if (localStorage.getItem('email')); {
@@ -54,7 +65,14 @@ $(function () {
 
 
 
-                        window.location.href = base_url + '/Remember';
+if(redirect)
+{
+	 window.location.href = base_url + '/Remember?redirect='+redirect;
+}else
+{
+	 window.location.href = base_url + '/Remember';
+}
+                       
 
                     } else {
                         var textodealerta = '<small><b class="d-block text-center">Aviso!</b>';
@@ -508,9 +526,13 @@ $(function () {
                                 $('#alertbox .alert').html(textodealerta).removeClass('alert-info').removeClass('alert-warning').removeClass('alert-danger').addClass('alert-success');
 
 
-
-                                window.location.href = base_url + '/Dashboard';
-
+if(redirect)
+{
+	 window.location.href = base_url + '/'+redirect;
+}else
+{
+	 window.location.href = base_url + '/Dashboard';
+}
                             } else {
                                 var textodealerta = '<small><b class="d-block text-center">Aviso!</b>';
                                 textodealerta += '<ul class="m-0 p-0 pl-3">';

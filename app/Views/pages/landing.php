@@ -30,7 +30,13 @@
         </div>
         <div class="row">
             <div class="d-none d-md-block col-12 col-md-6 pb-0 text-center text-md-left">
-                <a href="<?php echo base_url("Forgot"); ?>" class="text-white btn btn-link px-0 mx-0 text-md-left"> Esqueci a Senha </a>
+                <a href="<?php echo base_url("Forgot"); 
+				if(isset($_GET['redirect']))
+				{
+					echo '?redirect='.$_GET['redirect'];
+				}
+					
+				?>" class="text-white btn btn-link px-0 mx-0 text-md-left"> Esqueci a Senha </a>
             </div>
 
 
@@ -39,7 +45,12 @@
                 <button class="btn btn-warning btn-block">Entrar</button>
             </div>
             <div class="d-block d-md-none col-12 col-md-6 pb-0 text-center text-md-left">
-                <a href="<?php echo base_url("Forgot"); ?>" class="text-white btn btn-link px-0 mx-0 text-md-left"> Esqueci a Senha </a>
+                <a href="<?php echo base_url("Forgot"); 
+				if(isset($_GET['redirect']))
+				{
+					echo '?redirect='.$_GET['redirect'];
+				}
+				?>" class="text-white btn btn-link px-0 mx-0 text-md-left"> Esqueci a Senha </a>
             </div>
         </div>
     </form>

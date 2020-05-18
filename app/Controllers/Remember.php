@@ -11,7 +11,7 @@ class Remember extends BaseController
 
 
         if (!$session->get('logged')) {
-            return redirect()->to(base_url());
+            return redirect()->to(base_url().'?redirect='.$_SERVER['PHP_SELF']);
         } else {
 
             $data['logged'] = $session->get('logged');
