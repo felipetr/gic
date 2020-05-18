@@ -318,6 +318,19 @@
 
     </div>
 </form>
+<script>
+$(function () {
 
+
+   
+
+    
+        $('.addresssummernote').summernote({
+            height: 100,
+            toolbar: false
+        });
+    
+	});
+</script>
 
 <?php echo $generatepassmodal; ?>
