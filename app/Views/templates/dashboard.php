@@ -78,7 +78,7 @@
                                 </a>
                                 <div class="dropdown-menu bg-dark" aria-labelledby="projectsDropdown">
                                     <a class="dropdown-item" href="<?php echo base_url('/Dashboard/projects/list'); ?>"><i class="fas fa-bars"></i> Lista de Projetos</a>
-                                    <a class="dropdown-item" href="<?php echo base_url('/Dashboard/project/new'); ?>"><i class="fas fa-plus"></i> Novo Projeto</a>
+                                    <a class="dropdown-item" href="<?php echo base_url('/Project/new'); ?>"><i class="fas fa-plus"></i> Novo Projeto</a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
