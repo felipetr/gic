@@ -23,7 +23,7 @@ class Project extends BaseController
                 
                 
                 $db = db_connect();
-                $dataqueryu = 'SELECT * FROM hw_user WHERE type = ? ORDER BY slug';
+                $dataqueryu = 'SELECT * FROM hw_users WHERE type = ? ORDER BY slug';
                 
                 $queryu = $db->query($dataqueryu, 3);
                 
