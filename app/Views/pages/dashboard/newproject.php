@@ -18,7 +18,7 @@
                                                                         echo 'required';
                                                                     } ?>>
                         <option></option>
-                        <?php foreach ($costumer as &$value) { ?>
+                        <?php foreach ($costumers as &$value) { ?>
                             <option value="<?php echo $value->slug; ?>"><?php echo $value->name; ?></option>
                         <?php } ?>
      </select>
