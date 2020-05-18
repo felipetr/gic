@@ -122,7 +122,7 @@ class Project extends BaseController
                 $data['content'] = view('pages/dashboard/newproject', $data);
 
                 $db = db_connect();
-                $dataqueryu = 'SELECT * FROM hw_users WHERE type = ? ORDER BY slug';
+                $dataqueryu = 'SELECT * FROM hw_users  ORDER BY slug';
                 
                 $queryu = $db->query($dataqueryu, 3);
                 
