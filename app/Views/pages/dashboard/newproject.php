@@ -37,7 +37,27 @@
                     <textarea name="address" class="addresssummernote"></textarea>
 					
 			
-	 
+			
+			<hr>
+			
+			<?php if(!$logged->type) { ?>
+ Valor:
+         <input class="form-control mb-3 money" name="valor" required>
+			<?php } ?>
+	 <script>
+$(function () {
+
+
+   
+
+    
+        $('.addresssummernote').summernote({
+            height: 100,
+            toolbar: false
+        });
+    
+	});
+</script>
 	 
      </div>
      <div class="col-12 col-md-6 col-lg-3">
