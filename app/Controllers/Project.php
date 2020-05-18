@@ -31,7 +31,7 @@ class Project extends BaseController
                 $data['costumers'] =   $whileu;
                 
 
-                $dataqueryb = 'SELECT * FROM hw_briefings ORDER BY slug';
+                $dataqueryb = 'SELECT * FROM hw_briefings ORDER BY created_at';
                 
                 $queryb = $db->query($dataqueryb);
                 
@@ -90,7 +90,7 @@ class Project extends BaseController
                 $data['costumers'] =   $whileu;
          
 
-                $dataqueryb = 'SELECT * FROM hw_briefings ORDER BY slug';
+                $dataqueryb = 'SELECT * FROM hw_briefings ORDER BY created_at';
                 
                 $queryb = $db->query($dataqueryb);
                 
@@ -147,7 +147,7 @@ class Project extends BaseController
 
 
 
-                $dataqueryb = 'SELECT * FROM hw_briefings ORDER BY slug';
+                $dataqueryb = 'SELECT * FROM hw_briefings ORDER BY created_at';
                 
                 $queryb = $db->query($dataqueryb);
                 

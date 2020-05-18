@@ -26,12 +26,7 @@
 	 
 	  Briefing:
 	
-	 <select name="costumer" class="custom-select" required>
-                        <option></option>
-                        <?php foreach ($briefings as &$value) { ?>
-                            <option value="<?php echo $value->slug; ?>"><?php echo $value->name; ?></option>
-                        <?php } ?>
-     </select>
+
 	 
 	 
      </div>
