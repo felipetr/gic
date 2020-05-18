@@ -14,9 +14,7 @@
          <input class="form-control mb-3" name="name" required>
 
      Cliente:
-	 <pre>
-	 <?php print_r($costumers); ?>
-	 </pre>
+	
 	 <select name="costumer" class="custom-select" required>
                         <option></option>
                         <?php foreach ($costumers as &$value) { ?>
