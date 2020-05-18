@@ -30,8 +30,21 @@ class Project extends BaseController
                 $whileu = $queryu->getResult();
                 $data['costumers'] =   $whileu;
                 
+
+                $dataqueryu = 'SELECT * FROM hw_briefings ORDER BY slug';
+                
+                $queryb = $db->query($dataqueryb);
+                
+                $whileb = $queryb->getResult();
+                
+                $data['briefings'] =   $whileb;
+                
+
+
                 $data['query'] =  $while;
              
+
+                
             
                 $data['title'] = 'Editar Projeto';
                 $data['icon'] = 'book';
@@ -76,6 +89,16 @@ class Project extends BaseController
                 $whileu = $queryu->getResult();
                 $data['costumers'] =   $whileu;
          
+
+                $dataqueryu = 'SELECT * FROM hw_briefings ORDER BY slug';
+                
+                $queryb = $db->query($dataqueryb);
+                
+                $whileb = $queryb->getResult();
+                
+                $data['briefings'] =   $whileb;
+                
+
                 
                 $data['query'] =  $while;
              
@@ -121,8 +144,16 @@ class Project extends BaseController
                 $queryu = $db->query($dataqueryu, '3');
                 
                 $whileu = $queryu->getResult();
+
+
+
+                $dataqueryu = 'SELECT * FROM hw_briefings ORDER BY slug';
                 
-                $data['costumers'] =   $whileu;
+                $queryb = $db->query($dataqueryb);
+                
+                $whileb = $queryb->getResult();
+                
+                $data['briefings'] =   $whileb;
                 
                 $data['modals'] = view('items/newprojmodal');
 
@@ -130,7 +161,7 @@ class Project extends BaseController
                 $data['content'] = view('pages/dashboard/newproject', $data);
 
               
-                //  $data['content'] = '';
+           
                 echo view('templates/dashboard', $data);
             } else {
                 return redirect()->to(base_url('/Dashboard'));
