@@ -1,7 +1,7 @@
 $(function () {
 
 
-    $("#removebriefform").submit(function () {
+  
 
         $('.mobile').mask('00 0 0000.0000');
         $('.onlynumbers').mask('000000000000000000000000000000');
@@ -12,7 +12,7 @@ $(function () {
             toolbar: false
         });
     
-
+  $("#removebriefform").submit(function () {
 
         $('#removebriefform #alertbox').slideUp();
 

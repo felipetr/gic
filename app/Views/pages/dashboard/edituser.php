@@ -288,19 +288,5 @@
     </div>
 </form>
 
-<script>
-$(function () {
-
-
-    $("#removebriefform").submit(function () {
-
-    
-        $('.addresssummernote').summernote({
-            height: 100,
-            toolbar: false
-        });
-    
-	});
-</script>
 
 <?php echo $generatepassmodal; ?>
