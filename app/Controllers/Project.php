@@ -22,7 +22,13 @@ class Project extends BaseController
                 $while = $query->getResult()[0];
                 
                 
-               
+                $db = db_connect();
+                $dataqueryu = 'SELECT * FROM hw_user WHERE type = ? ORDER BY slug';
+                
+                $queryu = $db->query($dataqueryu, 3);
+                
+                $whileu = $query->getResult();
+                $data['costumers'] =   $whileu;
                 
                 $data['query'] =  $while;
              
@@ -62,7 +68,13 @@ class Project extends BaseController
                 $bid = $while->id;
                 
                 
+                $db = db_connect();
+                $dataqueryu = 'SELECT * FROM hw_user WHERE type = ? ORDER BY slug';
                 
+                $queryu = $db->query($dataqueryu, 3);
+                
+                $whileu = $query->getResult();
+                $data['costumers'] =   $whileu;
          
                 
                 $data['query'] =  $while;
@@ -109,6 +121,13 @@ class Project extends BaseController
 
                 $data['content'] = view('pages/dashboard/newproject', $data);
 
+                $db = db_connect();
+                $dataqueryu = 'SELECT * FROM hw_user WHERE type = ? ORDER BY slug';
+                
+                $queryu = $db->query($dataqueryu, 3);
+                
+                $whileu = $query->getResult();
+                $data['costumers'] =   $whileu;
                 //  $data['content'] = '';
                 echo view('templates/dashboard', $data);
             } else {
