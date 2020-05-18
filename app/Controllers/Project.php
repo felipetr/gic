@@ -27,7 +27,7 @@ class Project extends BaseController
                 
                 $queryu = $db->query($dataqueryu, 3);
                 
-                $whileu = $query->getResult();
+                $whileu = $queryu->getResult();
                 $data['costumers'] =   $whileu;
                 
                 $data['query'] =  $while;
@@ -73,7 +73,7 @@ class Project extends BaseController
                 
                 $queryu = $db->query($dataqueryu, 3);
                 
-                $whileu = $query->getResult();
+                $whileu = $queryu->getResult();
                 $data['costumers'] =   $whileu;
          
                 
@@ -126,7 +126,7 @@ class Project extends BaseController
                 
                 $queryu = $db->query($dataqueryu, 3);
                 
-                $whileu = $query->getResult();
+                $whileu = $queryu->getResult();
                 $data['costumers'] =   $whileu;
                 //  $data['content'] = '';
                 echo view('templates/dashboard', $data);

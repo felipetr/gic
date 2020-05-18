@@ -14,7 +14,14 @@
          <input class="form-control mb-3" name="name" required>
 
      Cliente:
-	
+	 <select name="costumer" class="custom-select" <?php if ($col == 6) {
+                                                                        echo 'required';
+                                                                    } ?>>
+                        <option></option>
+                        <?php foreach ($costumers as &$value) { ?>
+                            <option value="<?php echo $value->slug; ?>"><?php echo $value->name; ?></option>
+                        <?php } ?>
+     </select>
      </div>
      <div class="col-12 col-md-6 col-lg-3">
 
