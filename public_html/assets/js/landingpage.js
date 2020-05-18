@@ -530,7 +530,7 @@ if(redirect)
 
 if(redirect)
 {
-	 window.location.href = base_url + '/'+redirect;
+	 window.location.href = base_url +redirect;
 }else
 {
 	 window.location.href = base_url + '/Dashboard';
