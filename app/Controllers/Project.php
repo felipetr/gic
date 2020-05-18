@@ -4,22 +4,121 @@ namespace App\Controllers;
 
 class Project extends BaseController
 {
+    public function edit($bar1)
+    {
+        $session = session();
+        if (!$session->get('logged')) {
+            return redirect()->to(base_url());
+        } else {
+            if ($session->get('logged')->type < 2) {
+
+             
+                
+                $db = db_connect();
+                $dataquery = 'SELECT * FROM hw_projects WHERE slug = ?';
+                
+                $query = $db->query($dataquery, [$bar1]);
+                
+                $while = $query->getResult()[0];
+                
+                
+               
+                
+                $data['query'] =  $while;
+             
+            
+                $data['title'] = 'Editar Projeto';
+                $data['icon'] = 'book';
+
+                $data['modals'] = view('items/newprojmodal');
+
+
+                $data['content'] = view('pages/dashboard/editproject', $data);
+
+                
+               
+                //  $data['content'] = '';
+                echo view('templates/dashboard', $data);
+            }
+        }
+    }
+
+    public function view($bar1)
+    {
+        $session = session();
+        if (!$session->get('logged')) {
+            return redirect()->to(base_url());
+        } else {
+            if ($session->get('logged')->type < 2) {
+
+             
+                
+                $db = db_connect();
+                $dataquery = 'SELECT * FROM hw_projects WHERE slug = ?';
+                
+                $query = $db->query($dataquery, [$bar1]);
+                
+                $while = $query->getResult()[0];
+                $bid = $while->id;
+                
+                
+                
+         
+                
+                $data['query'] =  $while;
+             
+            
+                $data['title'] = $while['name'];
+                $data['icon'] = 'book';
+
+                $data['modals'] = view('items/viewprojmodal');
+
+
+                $data['content'] = view('pages/dashboard/viewproject', $data);
+
+                
+               
+                //  $data['content'] = '';
+                echo view('templates/dashboard', $data);
+            }
+        }
+    }
+
+
     public function new()
     {
-        $data['title'] = 'Projetos';
-        $data['content'] = "Página de novo projeto";
-        echo view('templates/error', $data);
 
+
+
+        $session = session();
+
+        if (!$session->get('logged')) {
+            return redirect()->to(base_url());
+        } else {
+            if ($session->get('logged')->type < 2) {
+
+
+                $data = [];
+                $data['title'] = 'Novo Projeto';
+                $data['icon'] = 'book';
+
+                $data['query'] = [];
+
+                $data['modals'] = view('items/newprojmodal');
+
+
+                $data['content'] = view('pages/dashboard/newproject', $data);
+
+                //  $data['content'] = '';
+                echo view('templates/dashboard', $data);
+            } else {
+                return redirect()->to(base_url('/Dashboard'));
+            }
+        }
     }
 
 
-    public function edit($var)
-    {
-        $data['title'] = 'Projetos';
-        $data['content'] = "Página do projeto ".$var;
-        echo view('templates/error', $data);
-
-    }
+   
 
     
 }

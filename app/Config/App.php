@@ -27,7 +27,7 @@ class App extends BaseConfig
 	|
 	*/
 
-	public $baseURL = 'http://192.168.1.3/projetos/gic/gic/public_html/';
+	public $baseURL = 'http://gic.felipetravassos.com/';
 
 
 	/*

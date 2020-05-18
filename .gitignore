@@ -59,7 +59,7 @@ writable/session/*
 
 writable/uploads/*
 !writable/uploads/index.html
-
+app/Config/*
 app/Config/App.php
 app/Config/Database.php
 

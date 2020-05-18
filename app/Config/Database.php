@@ -31,11 +31,11 @@ class Database extends \CodeIgniter\Database\Config
 	 */
 	public $default = [
 		'DSN'      => '',
-		'hostname' => 'localhost',
-		'username' => 'root',
+		'hostname' => 'felipetravassos.com',
+		'username' => 'felipetr_gic',
 		'encrypt' => 'testedeencr',
-		'password' => '',
-		'database' => 'gerens_bio',
+		'password' => 'n!9ekRm!LJ^2',
+		'database' => 'felipetr_gic',
 		'DBDriver' => 'MySQLi',
 		'DBPrefix' => '',
 		'pConnect' => false,
