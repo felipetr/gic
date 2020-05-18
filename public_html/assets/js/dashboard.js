@@ -11,6 +11,8 @@ $(function () {
             height: 100,
             toolbar: false
         });
+		
+		
     
   $("#removebriefform").submit(function () {
 

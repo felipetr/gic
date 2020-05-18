@@ -1,14 +1,16 @@
 $(function () {
 
    const queryString = window.location.search;
-   var redirect = '';
+  
    if(queryString)
    {
 	   const urlParams = new URLSearchParams(queryString);
 	   try{
 	 
-	   const redirect = urlParams.get('redirect');
+				var redirect = urlParams.get('redirect');
 	   
+	   }catch (e) {
+		    var redirect = '';
 	   }
    }
 
