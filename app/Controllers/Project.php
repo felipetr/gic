@@ -145,7 +145,7 @@ class Project extends BaseController
                 
                 $whileu = $queryu->getResult();
 
-
+                $data['costumers'] =   $whileu;
 
                 $dataqueryb = 'SELECT * FROM hw_briefings ORDER BY created_at';
                 
