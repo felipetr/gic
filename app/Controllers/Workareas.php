@@ -15,7 +15,7 @@ class Workareas extends BaseController
         $session = session();
 
         if (!$session->get('logged')) {
-            return redirect()->to(base_url().'?redirect='.$_SERVER['PHP_SELF']);
+            return redirect()->to(base_url().'?redirect='.$_SERVER['REQUEST_URI']);
         } else {
             if ($session->get('logged')->type < 2  && $do == 'list') {
                 
@@ -70,7 +70,7 @@ class Workareas extends BaseController
         $session = session();
 
         if (!$session->get('logged')) {
-            return redirect()->to(base_url().'?redirect='.$_SERVER['PHP_SELF']);
+            return redirect()->to(base_url().'?redirect='.$_SERVER['REQUEST_URI']);
         } else {
             if ($session->get('logged')->type < 2  && $do == 'list') {
                 

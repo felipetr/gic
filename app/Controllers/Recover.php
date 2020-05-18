@@ -10,7 +10,7 @@ class Recover extends BaseController
         //$session->recovermail = '1';
 
         if (!$session->get('recovermail')) {
-            return redirect()->to(base_url().'?redirect='.$_SERVER['PHP_SELF']);
+            return redirect()->to(base_url().'?redirect='.$_SERVER['REQUEST_URI']);
         } else {
 
             $data['title'] = 'Recuperação de Senha';
