@@ -124,7 +124,7 @@ class Project extends BaseController
                 $db = db_connect();
                 $dataqueryu = 'SELECT * FROM hw_users ORDER BY slug';
                 
-                $queryu = $db->query($dataqueryu, 3);
+                $queryu = $db->query($dataqueryu);
                 
                 $whileu = $queryu->getResult();
 
