@@ -115,20 +115,21 @@ class Project extends BaseController
                 $data['icon'] = 'book';
 
                 $data['query'] = [];
-
+                $db = db_connect();
+                $dataqueryu = 'SELECT * FROM hw_users ORDER BY slug';
+                
+                $queryu = $db->query($dataqueryu);
+                
+                $whileu = $queryu->getResult();
+                
+                $data['costumers'] =   $whileu;
+                
                 $data['modals'] = view('items/newprojmodal');
 
 
                 $data['content'] = view('pages/dashboard/newproject', $data);
 
-                $db = db_connect();
-                $dataqueryu = 'SELECT * FROM hw_users  ORDER BY slug';
-                
-                $queryu = $db->query($dataqueryu, 3);
-                
-                $whileu = $queryu->getResult();
-                
-                $data['costumers'] =   $whileu;
+              
                 //  $data['content'] = '';
                 echo view('templates/dashboard', $data);
             } else {
