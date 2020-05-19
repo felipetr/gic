@@ -56,10 +56,13 @@
 			
 			
 			<hr>
-			
-			<?php if(!$logged->type) { ?>
-			<div class="row">
-			<div class="col-12 col-sm-6 col-md-8"> </div>
+	<div class="form-row">		
+		
+			<div class="col-12 <?php if(!$logged->type) { echo  'col-sm-6 col-md-8'; } ?>">
+			 Pasta do Google Drive:
+				<input class="form-control mb-3" name="gdrive" required>
+			</div>
+				<?php if(!$logged->type) { ?>
 			<div class="col-12 col-sm-6 col-md-4">
  Valor:
  
@@ -71,12 +74,13 @@
   <input type="text" name= valor class="form-control money text-right" placeholder="0,00">
 </div>
 </div>
+<?php } ?>
 </div>
 
 <hr>
        
 	   
-			<?php } ?>
+			
 
 <h3 class="m-0 p-0 pb-3 text-center">Usuários:</h3>
 
@@ -116,6 +120,11 @@
              <hr>
              <button type="button" class="btn btn-block btn-secondary btn-close">Salvar e Fechar</button>
 
+	<hr>
+	<input type="checkbox" name="vib" value="true">
+            <label> Comentários visíveis a profissionais</label>
+			
+	<hr>
              <div id="alertbox" style="display: none">
                  <div class="py-3">
                      <div class="alert alert-warning text-left p-2 py-0">
