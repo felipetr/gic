@@ -78,18 +78,26 @@
 	   
 			<?php } ?>
 
-Usuários:
+<h3 class="m-0 p-0 pb-3 text-center">Usuários:</h3>
 
 <div class="form-row">
 <div class="col-12 col-sm-6">
 <div class="alert alert-warning">
 <h4 class="p-0 m-0 text-center">Auditores</h4>
+<hr>
+<ul>
+</ul>
+<hr>
 <button type="button" class="adduser btn btn-warning btn-block text-dark" data-type="2">Adicionar Auditor</button>
 </div>
 </div>
 <div class="col-12 col-sm-6">
 <div class="alert alert-warning">
-<h4 class="p-0 m-0 text-center">Auditores</h4>
+<h4 class="p-0 m-0 text-center">Profissionais</h4>
+<hr>
+<ul>
+</ul>
+<hr>
 <button type="button" class="adduser btn btn-warning btn-block text-dark" data-type="4">Adicionar Profissional</button>
 </div>
 </div>
