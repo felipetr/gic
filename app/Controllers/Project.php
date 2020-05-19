@@ -154,13 +154,22 @@ class Project extends BaseController
                 $whileb = $queryb->getResult();
                 
                 $data['briefings'] =   $whileb;
+
+
+                $dataqueryw = 'SELECT * FROM hw_workarea_professionals ORDER BY slug';
+                
+                $queryw = $db->query($dataqueryw);
+                
+                $whilew = $queryw->getResult();
+                
+                $data['workareas'] =   $whilew;
                 
                 $data['modals'] = view('items/newprojmodal');
 
 
                 $data['content'] = view('pages/dashboard/newproject', $data);
 
-              
+                
            
                 echo view('templates/dashboard', $data);
             } else {

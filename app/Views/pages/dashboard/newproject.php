@@ -24,7 +24,21 @@
 	 
 	 
 	 
-	  Briefing:
+	 Categoria:
+	
+	 <select name="briefing" class="custom-select mb-3" required>
+                        <option></option>
+                        <?php foreach ($workareas as &$value) { ?>
+                            <option value="<?php echo $value->slug; ?>"><?php echo $value->name; ?></option>
+                        <?php } ?>
+     </select>
+	 
+	 
+	 
+	 
+	 
+	 
+	 Briefing:
 	
 	 <select name="briefing" class="custom-select mb-3" required>
                         <option></option>
@@ -33,7 +47,10 @@
                         <?php } ?>
      </select>
 	 
-	        Descrição do Projeto:
+	 
+	 
+	 
+	        Descrição:
                     <textarea name="address" class="addresssummernote"></textarea>
 					
 			
@@ -47,7 +64,7 @@
  Valor:
  
  
- <div class="input-group mb-3">
+ <div class="input-group">
   <div class="input-group-prepend">
     <span class="input-group-text" id="basic-addon1">R$</span>
   </div>
@@ -56,24 +73,27 @@
 </div>
 </div>
 
-
+<hr>
        
 	   
 			<?php } ?>
-	 <script>
-$(function () {
 
+Usuários:
 
-   
-
-    
-        $('.addresssummernote').summernote({
-            height: 100,
-            toolbar: false
-        });
-    
-	});
-</script>
+<div class="form-row">
+<div class="col-12 col-sm-6">
+<div class="alert alert-warning">
+<h4 class="p-0 m-0 text-center">Auditores</h4>
+<button type="button" class="adduser btn btn-warning btn-block text-dark" data-type="2">Adicionar Auditor</button>
+</div>
+</div>
+<div class="col-12 col-sm-6">
+<div class="alert alert-warning">
+<h4 class="p-0 m-0 text-center">Auditores</h4>
+<button type="button" class="adduser btn btn-warning btn-block text-dark" data-type="4">Adicionar Profissional</button>
+</div>
+</div>
+</div>
 	 
      </div>
      <div class="col-12 col-md-6 col-lg-3">
