@@ -41,8 +41,24 @@
 			<hr>
 			
 			<?php if(!$logged->type) { ?>
+			<div class="row">
+			<div class="col-12 col-sm-6 col-md-8"> </div>
+			<div class="col-12 col-sm-6 col-md-4">
  Valor:
-         <input class="form-control mb-3 money" name="valor" required>
+ 
+ 
+ <div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon1">R$</span>
+  </div>
+  <input type="text" name= valor class="form-control money text-right" placeholder="0,00">
+</div>
+</div>
+</div>
+
+
+       
+	   
 			<?php } ?>
 	 <script>
 $(function () {
