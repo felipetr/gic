@@ -15,7 +15,7 @@ $(function () {
         });
 		
 		
-		alert(1);
+
 		
     
   $("#removebriefform").submit(function () {

@@ -220,12 +220,9 @@
     <script src="<?php echo base_url("/assets/lib/popper.min.js"); ?>"></script>
     <script src="<?php echo base_url("/assets/lib/summernote/summernote.js"); ?>"></script>
     <script src="<?php echo base_url("/assets/lib/bootstrap/js/bootstrap.min.js"); ?>"></script>
-
     <script src="<?php echo base_url("/assets/lib/jquery.mask.js"); ?>"></script>
     <script src="<?php echo base_url("/assets/lib/cleanalert/cleanalert.js"); ?>"></script>
-
-	<script src="<?php echo base_url("/assets/js/dashboard.js"); ?>"></script>
-	<script src="<?php echo base_url("/assets/js/dashboard.js"); ?>"></script>
+    <script src="<?php echo base_url("/assets/js/dashboard.js"); ?>"></script>
 
     <form id="avatarform" class="d-none" enctype="multipart/form-data">
         <input class="uploadImage" type="file" accept="image/*" name="file" />
