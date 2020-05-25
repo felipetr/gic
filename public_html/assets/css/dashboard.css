@@ -1,7 +1,10 @@
 html {
     height: 100%;
 }
-
+.select-user-btn
+{
+	cursor: pointer;
+}
 body {
     font-family: 'Manrope', sans-serif;
     height: 100%;
@@ -17,6 +20,17 @@ header {
 .autocompletebox
 {
     position: relative;
+}
+.note-editable p, .nopad p
+{
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.btn-seequest
+{
+    position: relative;
+    top: 5px;
 }
 .sortablelist
 {

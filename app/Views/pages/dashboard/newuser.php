@@ -2,11 +2,27 @@
     <div class="row">
         <div class="col-12 col-md-6 col-lg-9">
             <div class="form-row">
-                <div class="col-12 col-xl-9">
-                    Nome<small class="text-danger">*</small>
-                    <input class="form-control mb-3" name="name" required>
+                <div class="col-12 col-xl-<?php if ($typeofuser == 3) {
+                                                echo '12';
+                                            } else {
+                                                echo '9';
+                                            } ?>">
+                    <?php if ($typeofuser == 3) {
+                        echo 'Razão Social';
+                    } else {
+                        echo 'Nome';
+                    } ?><small class="text-danger">*</small>
+                    <input class="form-control mb-3" name="<?php if ($typeofuser == 3) {
+                                                echo 'fantasia';
+                                            } else {
+                                                echo 'name';
+                                            } ?>" required>
                 </div>
-                <div class="col-12 col-xl-3 pb-3">
+                <div class="col-12 col-xl-3 pb-3 <?php if ($typeofuser == 3) {
+                                                        echo 'd-none';
+                                                    } else {
+                                                        echo '';
+                                                    } ?>">
                     Gênero
                     <select name="gender" class="custom-select" required>
                         <option selected value="x">Prefiro não informar</option>
@@ -14,6 +30,24 @@
                         <option value="o">Masculino</option>
                     </select>
                 </div>
+
+                <div class="col-12 pb-3 <?php if ($typeofuser == 3) {
+                                            echo '';
+                                        } else {
+                                            echo 'd-none';
+                                        } ?>">
+                    Nome Fantasia<small class="text-danger">*</small>
+                    <input class="form-control mb-3" name="<?php if ($typeofuser == 3) {
+                                                echo 'name';
+                                            } else {
+                                                echo 'fantasia';
+                                            } ?>" required value="<?php if ($typeofuser == 3) {
+                                                                                        echo '';
+                                                                                    } else {
+                                                                                        echo 'NULL';
+                                                                                    } ?>">
+                </div>
+
 
                 <?php
                 $col = 3;
@@ -24,8 +58,16 @@
                                             if ($col != 4) {
                                                 echo ' d-none';
                                             } ?> pb-3">
-                    CPF/CNPJ<small class="text-secondary">(apenas números)</small> <small class="text-danger">*</small>
-                    <input type="text" name="cpf" class="form-control onlynumbers" value="" <?php if ($col == 4) {
+                     <?php if ($typeofuser == 3) {
+                                            echo 'CNPJ';
+                                        } else {
+                                            echo 'CPF';
+                                        } ?><small class="text-secondary">(apenas números)</small> <small class="text-danger">*</small>
+                    <input type="text" name="cpf" class="form-control <?php if ($typeofuser == 3) {
+                                            echo 'cnpj';
+                                        } else {
+                                            echo 'cpf';
+                                        } ?>" value="" <?php if ($col == 4) {
                                                                                                 echo 'required';
                                                                                             } ?>>
                 </div>
@@ -90,7 +132,7 @@
                         <option value="SP">São Paulo</option>
                         <option value="SE">Sergipe</option>
                         <option value="TO">Tocantins</option>
-						<option value="EX">Extrangeiro</option>
+                        <option value="EX">Extrangeiro</option>
                     </select>
                 </div>
                 <div class="col-12 col-xl-4 pb-3">
@@ -175,7 +217,7 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                    Portfólio
+                        Portfólio
                         <input type="url" name="portifolio" class="form-control" value="">
                     </div>
                 </div>
@@ -197,14 +239,38 @@
                     </div>
                 </div>
 
+                <?php if ($typeofuser == 3) { ?>
 
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap-4-autocomplete/dist/bootstrap-4-autocomplete.min.js" crossorigin="anonymous"></script>
+                    <div class="autocompletebox mb-3">
+                        <hr>
+                        Briefing
+                        <input class="form-control bancoinput realselect">
+                        <input name="briefing" type="hidden" class="inputvalue">
+                        <div id="briefinglist" class="fakelist" style="display:none;">
+
+                            <?php foreach ($briefings as &$brief) { ?>
+                                <div class="fakeoption" data-value="<?php echo $brief->slug; ?>" data-text="<?php echo $brief->name; ?>"><?php echo $brief->name; ?> <button type="button" class="btn btn-warning btn-sm float-right text-dark btn-seequest" "><span class=" d-none questions"><?php echo $brief->questions; ?></span><i class="fas fa-eye"></i></button></div>
+                            <?php } ?>
+
+                            <div class="p-1"></div>
+
+                        </div>
+                    </div>
+
+
+
+                <?php } else { ?>
+                    <input type="hidden" name="briefing">
+                    <input name="briefing2" type="hidden">
+                <?php } ?>
 
                 <div class="<?php if ($typeofuser != 4) {
                                 echo 'd-none';
                             } else { } ?>">
 
 
-                
+
                     <hr>
 
                     <h5 class="p-0 p-0 mb-3">Dados Bancários</h5>
@@ -319,18 +385,51 @@
     </div>
 </form>
 <script>
-$(function () {
+    $(function() {
 
 
-   
 
-    
+
+
         $('.addresssummernote').summernote({
             height: 100,
             toolbar: false
         });
-    
-	});
+
+    });
 </script>
 
 <?php echo $generatepassmodal; ?>
+
+
+
+<div class="modal fade" id="ShowBriefModal" tabindex="-1" role="dialog" aria-labelledby="ShowBriefModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dark " role="document">
+        <div class="modal-content bg-dark">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ShowBriefModalLabel">Excluir Usuário</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+
+            Perguntas:
+                <div class="questslist">
+
+                </div>
+                <hr>
+
+                <div class="form-row">
+                    <div class="col-12">
+                        <button type="button" data-dismiss="modal" class="btn btn-block btn-warning text-dark">Fechar</button>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -147,6 +147,27 @@ class Project extends BaseController
 
                 $data['costumers'] =   $whileu;
 
+
+
+                $dataqueryu = 'SELECT * FROM hw_users WHERE type = ? ORDER BY slug';
+                
+                $queryu = $db->query($dataqueryu, '4');
+                
+                $whileu = $queryu->getResult();
+
+                $data['professionals'] =   $whileu;
+
+
+                
+                $dataqueryu = 'SELECT * FROM hw_users WHERE type = ? ORDER BY slug';
+                
+                $queryu = $db->query($dataqueryu, '2');
+                
+                $whileu = $queryu->getResult();
+
+                $data['controllers'] =   $whileu;
+
+
                 $dataqueryb = 'SELECT * FROM hw_briefings ORDER BY created_at';
                 
                 $queryb = $db->query($dataqueryb);
@@ -163,6 +184,16 @@ class Project extends BaseController
                 $whilew = $queryw->getResult();
                 
                 $data['workareas'] =   $whilew;
+
+                $workareasnew = [];
+
+                foreach ($whilew as &$workarea) {
+                    $slug = $workarea->slug;
+                    $name = $workarea->name;
+                    $workareasnew[$slug] = $name;
+                }
+
+                $data['workareasarr'] =   $workareasnew;
                 
                 $data['modals'] = view('items/newprojmodal');
 

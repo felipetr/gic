@@ -12,7 +12,7 @@ class Dashboard extends BaseController
   {
     $session = session();
     if (!$session->get('logged')) {
-      return redirect()->to(base_url().'?redirect='.$_SERVER['REQUEST_URI']);
+      return redirect()->to(base_url() . '?redirect=' . $_SERVER['REQUEST_URI']);
     } else {
       if ($bar1 == 'list' && $session->get('logged')->type < 2) {
         $data['logged'] = $session->get('logged');
@@ -209,7 +209,7 @@ class Dashboard extends BaseController
   {
     $session = session();
     if (!$session->get('logged')) {
-      return redirect()->to(base_url().'?redirect='.$_SERVER['REQUEST_URI']);
+      return redirect()->to(base_url() . '?redirect=' . $_SERVER['REQUEST_URI']);
     } else {
       if ($session->get('logged')->type < 5) {
         $newpass =  $_POST['newpass'];
@@ -328,7 +328,7 @@ class Dashboard extends BaseController
     $session = session();
     if (!$session->get('logged')) {
 
-      return redirect()->to(base_url().'?redirect='.$_SERVER['REQUEST_URI']);
+      return redirect()->to(base_url() . '?redirect=' . $_SERVER['REQUEST_URI']);
     } else {
 
       if ($session->get('logged')->type < 2) {
@@ -457,7 +457,7 @@ class Dashboard extends BaseController
   public function savenewpassuser()
   {
     if (!$session->get('logged')) {
-      return redirect()->to(base_url().'?redirect='.$_SERVER['REQUEST_URI']);
+      return redirect()->to(base_url() . '?redirect=' . $_SERVER['REQUEST_URI']);
     } else {
       $newpass =  $_POST['newpass'];
       $newpass2 =  $_POST['newpass2'];
@@ -578,7 +578,7 @@ class Dashboard extends BaseController
 
 
     if (!$session->get('logged')) {
-      return redirect()->to(base_url().'?redirect='.$_SERVER['REQUEST_URI']);
+      return redirect()->to(base_url() . '?redirect=' . $_SERVER['REQUEST_URI']);
     } else {
 
 
@@ -673,30 +673,28 @@ class Dashboard extends BaseController
             $projetos = [];
 
 
-       
 
-              $bid = $while->id;
-              $db = db_connect();
-              $sql = 'SELECT * FROM hw_projects WHERE briefing = ?';
-              $query2 = $db->query($sql, [$bid]);
-              $while->cont = count($query2->getResult());
-              $while->projects = $query2->getResult();
 
-              
-           
+            $bid = $while->id;
+            $db = db_connect();
+            $sql = 'SELECT * FROM hw_projects WHERE briefing = ?';
+            $query2 = $db->query($sql, [$bid]);
+            $while->cont = count($query2->getResult());
+            $while->projects = $query2->getResult();
+
+
+
 
             $data['brief'] = $while;
             try {
               echo view('items/showbrief', $data);
-            }
-            catch(Exception $e) {
+            } catch (Exception $e) {
               echo '<div class="alert alert-danger">';
-            echo    '<h3 class="p-0 m-0 text-center"><i class="fas fa-exclamation-triangle"></i></h3>';
-            echo '<small class="d-block text-center"><b class="d-block text-center">Houve um erro ao acessar os dados, por favor tente mais tarde!</b></small>';
+              echo    '<h3 class="p-0 m-0 text-center"><i class="fas fa-exclamation-triangle"></i></h3>';
+              echo '<small class="d-block text-center"><b class="d-block text-center">Houve um erro ao acessar os dados, por favor tente mais tarde!</b></small>';
 
-            echo '</div>';
+              echo '</div>';
             }
-
           } else {
             echo '<div class="alert alert-danger">';
             echo    '<h3 class="p-0 m-0 text-center"><i class="fas fa-exclamation-triangle"></i></h3>';
@@ -754,7 +752,7 @@ class Dashboard extends BaseController
     $session = session();
 
     if (!$session->get('logged')) {
-      return redirect()->to(base_url().'?redirect='.$_SERVER['REQUEST_URI']);
+      return redirect()->to(base_url() . '?redirect=' . $_SERVER['REQUEST_URI']);
     } else {
       helper('getmessages');
       $data['messages'] = getmessages($session->get('logged')->type);
@@ -779,8 +777,7 @@ class Dashboard extends BaseController
     $session->destroy();
 
     $redirect = '';
-    if(isset($_GET['redirect']))
-    {
+    if (isset($_GET['redirect'])) {
       $redirect = $_GET['redirect'];
     }
 
@@ -788,7 +785,7 @@ class Dashboard extends BaseController
     localStorage.setItem("email", "");
     localStorage.setItem("pass", "");
     setTimeout(function () {
-      window.location.href = "' . base_url() . $redirect .'";
+      window.location.href = "' . base_url() . $redirect . '";
     }, 300);
 
     </script>';
@@ -922,7 +919,7 @@ class Dashboard extends BaseController
 
 
     if (!$session->get('logged')) {
-      return redirect()->to(base_url().'?redirect='.$_SERVER['REQUEST_URI']);
+      return redirect()->to(base_url() . '?redirect=' . $_SERVER['REQUEST_URI']);
     } else {
       if ($bar1 == 'list') {
 
@@ -1079,7 +1076,7 @@ class Dashboard extends BaseController
 
 
     if (!$session->get('logged')) {
-      return redirect()->to(base_url().'?redirect='.$_SERVER['REQUEST_URI']);
+      return redirect()->to(base_url() . '?redirect=' . $_SERVER['REQUEST_URI']);
     } else {
       if ($bar1 == 'list') {
 
@@ -1259,7 +1256,7 @@ class Dashboard extends BaseController
 
 
     if (!$session->get('logged')) {
-      return redirect()->to(base_url().'?redirect='.$_SERVER['REQUEST_URI']);
+      return redirect()->to(base_url() . '?redirect=' . $_SERVER['REQUEST_URI']);
     } else {
       if ($bar1 == 'list') {
 
@@ -1415,7 +1412,7 @@ class Dashboard extends BaseController
 
 
     if (!$session->get('logged')) {
-      return redirect()->to(base_url().'?redirect='.$_SERVER['REQUEST_URI']);
+      return redirect()->to(base_url() . '?redirect=' . $_SERVER['REQUEST_URI']);
     } else {
       if ($bar1 == 'list') {
 
@@ -1572,7 +1569,7 @@ class Dashboard extends BaseController
 
 
     if (!$session->get('logged')) {
-      return redirect()->to(base_url().'?redirect='.$_SERVER['REQUEST_URI']);
+      return redirect()->to(base_url() . '?redirect=' . $_SERVER['REQUEST_URI']);
     } else {
       if ($session->get('logged')->type < 2) {
         $data['logged'] = $session->get('logged');
@@ -1610,6 +1607,13 @@ class Dashboard extends BaseController
           $query = $db->query($dataquery);
           $data['workarea'] = $query->getResult();
         }
+
+        $dataquery = 'SELECT * FROM hw_briefings ORDER by slug;';
+        $db = db_connect();
+        $query = $db->query($dataquery);
+        $data['briefings'] = $query->getResult();
+
+
         if ($user == 'new') {
 
           $data['title'] = "Novo " . $data['title'];
@@ -1621,20 +1625,24 @@ class Dashboard extends BaseController
         } else {
 
 
-          $dataquery = 'SELECT * FROM hw_users WHERE slug = ? AND id != ? LIMIT 1;';
+          $dataquery = 'SELECT * FROM hw_users WHERE slug = ? LIMIT 1;';
 
           $filtersvar = array();
           array_push($filtersvar, $user);
-          array_push($filtersvar, $session->logged->id);
           $db = db_connect();
           $query = $db->query($dataquery, $filtersvar);
 
+          $queryc = count($query->getResult());
 
-
-          $data['query'] = $query->getResult()[0];
-
-          $data['title'] = "Editar " . $data['title'];
-          $data['content'] = view('pages/dashboard/edituser', $data);
+          if ($queryc) {
+            $data['query'] = $query->getResult()[0];
+            $data['title'] = "Editar " . $data['title'];
+            $data['content'] = view('pages/dashboard/edituser', $data);
+          }
+          else
+          {
+            return redirect()->to(base_url('/Dashboard/'.$type.'s/list'));
+          }
         }
 
 

@@ -14,21 +14,21 @@ class Save extends BaseController
         if (!$session->get('logged')) { } else {
             if ($session->get('logged')->type < 2) {
 
-              
+
 
                 $id = $_POST['iduser'];
                 $data = $_POST;
                 $db = db_connect();
 
-            
-                    $sql = "DELETE FROM hw_briefings WHERE id = ?";
-                
 
-                   
+                $sql = "DELETE FROM hw_briefings WHERE id = ?";
+
+
+
 
                 $query = $db->query($sql, [$id]);
 
-                
+
                 $response = [];
                 $response['status'] = 'success';
                 $response['validacao'] = $id;
@@ -62,7 +62,7 @@ class Save extends BaseController
 
                     $name = $data['name'];
 
-                    
+
 
                     $sql = " UPDATE hw_briefings
                     Set  
@@ -85,7 +85,6 @@ class Save extends BaseController
                     if ($data['saveandclose'] == 'true') {
 
                         $response['validacao'] = base_url('/Dashboard/briefings') . '/list';
-                        
                     }
                 }
                 header('Content-Type: application/json');
@@ -158,11 +157,10 @@ class Save extends BaseController
                     ]);
                 }
                 if ($response['status'] == 'success') {
-                    $response['validacao'] = base_url('/Briefing/edit') . '/'.$data['slug'];
+                    $response['validacao'] = base_url('/Briefing/edit') . '/' . $data['slug'];
                     if ($data['saveandclose'] == 'true') {
 
                         $response['validacao'] = base_url('/Dashboard/briefings') . '/list';
-                        
                     }
                 }
                 header('Content-Type: application/json');
@@ -443,21 +441,33 @@ class Save extends BaseController
 
 
 
+
                 if ($count) {
                     $status = 'warning';
                     $validacao .= '<li>Email já sendo usado por outro usuário!</li>';
                 }
 
-                $cpf = $data['cpf'];
-                $sql = "SELECT * FROM hw_users WHERE cpf = ? AND slug != ?";
-                $query = $db->query($sql, [$cpf, $slug]);
-                $count = count($query->getResult());
 
-                if ($count) {
-                    $status = 'warning';
-                    $validacao .= '<li>CPF/CNPJ já sendo usado por outro usuário!</li>';
+                $sql = "SELECT * FROM hw_users WHERE slug = ?";
+                $query = $db->query($sql, [$slug]);
+
+                $while = $query->getResult()[0];
+
+
+                $data['type'] = intval($while->type);
+
+                if ($data['type'] > 2) {
+                    $cpf = $data['cpf'];
+                    $db = db_connect();
+                    $sql = "SELECT * FROM hw_users WHERE cpf = ?";
+                    $query = $db->query($sql, [$cpf, $slug]);
+                    $count = count($query->getResult());
+
+                    if ($count) {
+                        $status = 'warning';
+                        $validacao .= '<li>CPF/CNPJ já sendo usado por outro usuário!</li>';
+                    }
                 }
-
                 if (!$data['banco']) {
                     $data['banco'] = $data['bancopress'];
                 }
@@ -485,6 +495,8 @@ class Save extends BaseController
                        agd = ?,
                        conta = ?,
                        contad = ?,
+                       briefing = ?,
+                       fantasia = ?,
                        updated_at = NOW()
                        
                        WHERE slug = ?
@@ -512,8 +524,20 @@ class Save extends BaseController
                         $data['agd'],
                         $data['conta'],
                         $data['contad'],
+                        $data['briefing'],
+                        $data['fantasia'],
                         $data['slug']
                     ]);
+
+
+
+                    $sql = "SELECT * FROM hw_users WHERE slug = ?";
+                    $query = $db->query($sql, [$slug]);
+
+                    $while = $query->getResult()[0];
+
+
+                    $data['type'] = $while->type;
 
 
                     $resp = [];
@@ -532,7 +556,7 @@ class Save extends BaseController
                     }
                     if ($data['saveandclose'] == 'true') {
 
-                        $resp['validacao'] = base_url('/Dashboard') . '/' . $typeofuser . '/list';
+                        $resp['validacao'] = base_url('/Dashboard') . '/' . $typeofuser  . '/list';
                     }
                     header('Content-Type: application/json');
                     echo json_encode($resp);
@@ -553,7 +577,7 @@ class Save extends BaseController
         if (!$session->get('logged')) { } else {
             if ($session->get('logged')->type < 2) {
                 $data = $_POST;
-
+             
                 $newpass =  $data['newpass'];
                 $newpass2 =  $data['newpass2'];
 
@@ -625,19 +649,25 @@ class Save extends BaseController
                     $validacao .= '<li>Email já sendo usado por outro usuário!</li>';
                 }
 
+              
 
-                $cpf = $data['cpf'];
-                $db = db_connect();
-                $sql = "SELECT * FROM hw_users WHERE cpf = ?";
-                $query = $db->query($sql, [$cpf]);
-                $count = count($query->getResult());
 
-                if ($count) {
-                    $status = 'warning';
-                    $validacao .= '<li>CPF/CNPJ já sendo usado por outro usuário!</li>';
+                if ($data['type'] > 2) {
+                    $cpf = $data['cpf'];
+                    $db = db_connect();
+                    $sql = "SELECT * FROM hw_users WHERE cpf = ? AND type = ?";
+                    $query = $db->query($sql, [$cpf, $data['type']]);
+                    $count = count($query->getResult());
+
+
+                    if ($count) {
+                        $status = 'warning';
+                        $validacao .= '<li>CPF/CNPJ já sendo usado por outro usuário!</li>';
+                    }
                 }
                 helper('siteconfig');
 
+                
 
 
                 if (!$data['banco']) {
@@ -674,7 +704,7 @@ class Save extends BaseController
                         $total++;
                     }
 
-
+                    
 
                     $newpass = $data['newpass'];
                     $newpass = md5($newpass);
@@ -710,10 +740,14 @@ class Save extends BaseController
                 contad,
                 cv,
                 nascimento,
+                briefing,
+                fantasia,
                 created_at
              )
              VALUES
              (
+                ?,
+                ?,
                 ?,
                 ?,
                 ?,
@@ -767,7 +801,9 @@ class Save extends BaseController
                             $data['conta'],
                             $data['contad'],
                             $data['cv'],
-                            $data['nascimento']
+                            $data['nascimento'],
+                            $data['briefing'],
+                            $data['fantasia']
                         ]);
                     }
 

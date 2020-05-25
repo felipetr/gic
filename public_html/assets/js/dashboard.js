@@ -1,24 +1,25 @@
 $(function () {
 
 
-  
 
-        $('.mobile').mask('00 0 0000.0000');
-        $('.mobile').mask('00 0 0000.0000');
-        $('.money').mask("#.##0,00", {reverse: true});
-        $('.onlynumbers').mask('000000000000000000000000000000');
-        $('.date').mask('00/00/0000');
-        $('.summernote').summernote();
-        $('.addresssummernote').summernote({
-            height: 100,
-            toolbar: false
-        });
-		
-		
 
-		
-    
-  $("#removebriefform").submit(function () {
+    $('.mobile').mask('00 0 0000.0000');
+    $('.cpf').mask('000.000.000-00');
+    $('.cnpj').mask('00.000.000/0000-00');
+    $('.money').mask("#.##0,00", { reverse: true });
+    $('.onlynumbers').mask('000000000000000000000000000000');
+    $('.date').mask('00/00/0000');
+    $('.summernote').summernote();
+    $('.addresssummernote').summernote({
+        height: 100,
+        toolbar: false
+    });
+
+
+
+
+
+    $("#removebriefform").submit(function () {
 
         $('#removebriefform #alertbox').slideUp();
 
@@ -98,7 +99,7 @@ $(function () {
 
     $('#newbriefform').on('submit', (function (e) {
         e.preventDefault();
-     
+
         $('#newbriefform #alertbox').slideDown();
         var textodealerta = '<h3 class="p-0 m-0 text-center"><i class="fas fa-circle-notch fa-spin"></i></h3>';
         textodealerta += '<small class="d-block text-center"><b class="d-block text-center">Salvando...</b></small>';
@@ -124,25 +125,23 @@ $(function () {
                 try {
                     data = JSON.parse(returndata);
 
-                    if (data['status'] == 'warning')
-                    {
+                    if (data['status'] == 'warning') {
                         $('#newbriefform #alertbox').slideDown();
                         var textodealerta = '<h3 class="p-0 m-0 text-center"><i class="fas fa-exclamation-triangle"></i></h3>';
-                        textodealerta += '<small class="d-block text-center"><b class="d-block text-center">'+data['validacao']+'</b></small>';
+                        textodealerta += '<small class="d-block text-center"><b class="d-block text-center">' + data['validacao'] + '</b></small>';
                         $('#newbriefform #alertbox .alert').html(textodealerta).removeClass('alert-danger').addClass('alert-warning').removeClass('alert-info').removeClass('alert-success');
-        
-                    }else
-                    {
+
+                    } else {
                         window.location.href = data['validacao'];
                     }
-                }catch (e) {
+                } catch (e) {
                     $('#newbriefform #alertbox').slideDown();
                     var textodealerta = '<h3 class="p-0 m-0 text-center"><i class="fas fa-exclamation-triangle"></i></h3>';
                     textodealerta += '<small class="d-block text-center"><b class="d-block text-center">Houve um erro ao enviar os dados, por favor tente mais tarde!</b></small>';
                     $('#newbriefform #alertbox .alert').html(textodealerta).addClass('alert-danger').removeClass('alert-warning').removeClass('alert-info').removeClass('alert-success');
-    
+
                 }
-             
+
             }
         });
 
@@ -151,7 +150,7 @@ $(function () {
 
     $('#editbriefform').on('submit', (function (e) {
         e.preventDefault();
-     
+
         $('#editbriefform #alertbox').slideDown();
         var textodealerta = '<h3 class="p-0 m-0 text-center"><i class="fas fa-circle-notch fa-spin"></i></h3>';
         textodealerta += '<small class="d-block text-center"><b class="d-block text-center">Salvando...</b></small>';
@@ -177,19 +176,16 @@ $(function () {
                 try {
                     data = JSON.parse(returndata);
 
-                    if (data['status'] == 'warning')
-                    {
+                    if (data['status'] == 'warning') {
                         $('#editbriefform #alertbox').slideDown();
                         var textodealerta = '<h3 class="p-0 m-0 text-center"><i class="fas fa-exclamation-triangle"></i></h3>';
-                        textodealerta += '<small class="d-block text-center"><b class="d-block text-center">'+data['validacao']+'</b></small>';
+                        textodealerta += '<small class="d-block text-center"><b class="d-block text-center">' + data['validacao'] + '</b></small>';
                         $('#editbriefform #alertbox .alert').html(textodealerta).removeClass('alert-danger').addClass('alert-warning').removeClass('alert-info').removeClass('alert-success');
-        
-                    }else
-                    {
-                        if(data['validacao'])
-                        {
-                        window.location.href = data['validacao'];
-                        }else{
+
+                    } else {
+                        if (data['validacao']) {
+                            window.location.href = data['validacao'];
+                        } else {
                             $('#editbriefform #alertbox').slideDown();
                             var textodealerta = '<h3 class="p-0 m-0 text-center"><i class="fas fa-check"></i></h3>';
                             textodealerta += '<small class="d-block text-center"><b class="d-block text-center">Alteração concluída com sucesso!';
@@ -197,24 +193,24 @@ $(function () {
 
                             $('#editbriefform #alertbox .alert').html(textodealerta).removeClass('alert-info').removeClass('alert-warning').removeClass('alert-danger').addClass('alert-success');
 
-             
+
                         }
                     }
-                }catch (e) {
+                } catch (e) {
                     $('#editbriefform #alertbox').slideDown();
                     var textodealerta = '<h3 class="p-0 m-0 text-center"><i class="fas fa-exclamation-triangle"></i></h3>';
                     textodealerta += '<small class="d-block text-center"><b class="d-block text-center">Houve um erro ao enviar os dados, por favor tente mais tarde!</b></small>';
                     $('#editbriefform #alertbox .alert').html(textodealerta).addClass('alert-danger').removeClass('alert-warning').removeClass('alert-info').removeClass('alert-success');
-    
+
                 }
-             
+
             }
         });
 
     }));
 
 
-  
+
 
     $(".password-btn").on('click', (function (e) {
         var datauser = $(this).data('user');
@@ -224,6 +220,13 @@ $(function () {
 
         $('#NewPassModal #alertbox').hide();
         $('#NewPassModal').modal('show');
+
+    }));
+	
+	
+	$(".select-user-btn").on('click', (function (e) {
+		$(this).toggleClass('btn-secondary').toggleClass('btn-outline-secondary');
+		$(this).parents('.select-user-btnc').find('input').click();
 
     }));
 
@@ -328,8 +331,10 @@ $(function () {
     $(".realselect").on('keydown keyup change', (function (e) {
         var thisvalue = $(this).val();
         thislowervalue = thisvalue.toLowerCase();
+        var $fakelist = $(this).parents('.fakelist')
 
 
+        var cont = 0;
         $(".fakelist .fakeoption").each(function (index) {
             var thistext = $(this).data('text');
 
@@ -337,9 +342,12 @@ $(function () {
             thisvalue = thisvalue.normalize('NFD').replace(/([\u0300-\u036f]|[^0-9a-zA-Z])/g, ' ');
 
 
+
+
             if (thisvalue) {
                 if (thistext.includes(thisvalue)) {
                     $(this).show();
+                    cont++;
                 }
                 else {
                     $(this).hide();
@@ -347,21 +355,84 @@ $(function () {
 
             } else {
                 $(this).show();
+                cont++;
             }
 
-        });
 
+
+
+
+        });
+        if (cont) {
+
+            var total = (cont * 40) + 2;
+
+
+            $fakelist.animate({
+                height: total + 'px'
+            }, 500, function () {
+                // Animation complete.
+            });
+        }
     }));
+
+
     $(document).on("click", ".fakeoption", function () {
 
         var thisvalue = $(this).data('value'),
-            thistext = $(this).text();
+            thistext = $(this).data('text');
 
         $(this).parents('.autocompletebox').find(".realselect").val(thistext);
         $(this).parents('.autocompletebox').find(".inputvalue").val(thisvalue);
+        var $fakelist = $(this).parents('.fakelist')
+        if (thisvalue) {
+            $fakelist.slideUp();
+        }
+
+
 
 
     });
+    $(".btn-seequest").on('click', (function (e) {
+        e.stopPropagation();
+
+        $(this).parents('.fakelist').stop().slideDown();
+        var questions = $(this).find('.questions').html();
+        var name = $(this).parents('.fakeoption').data('text');
+
+
+        try {
+            var dataq = JSON.parse(questions);
+
+            var perguntaslit = '';
+
+
+            var i;
+            for (i = 0; i < dataq.length; i++) {
+
+                perguntaslit += '<hr><small style="opacity: .7;" class="d-block m-0 py-0 px-1">'+dataq[i]+'</small>';
+            }
+
+            $('#ShowBriefModalLabel').html(name);
+            $('.questslist').html(perguntaslit);
+
+
+            $('#ShowBriefModal').modal('show');
+
+
+        } catch (e) {
+
+        }
+
+        $(this).parents('.autocompletebox').find('.realselect').click().focus();
+
+
+        setTimeout(function () {
+            $(this).parents('.fakelist').stop().slideDown();
+        }, 200);
+
+
+    }));
 
     $(".inputgroup-pass button").on('click', (function (e) {
 
@@ -680,6 +751,7 @@ $(function () {
                            window.location.href = returndata['validacao'];
 
 
+                           console.log(returndata['validacao']);
 
                         } else {
                             var textodealerta = '<h3 class="p-0 m-0 text-center"><i class="fas fa-exclamation-triangle"></i></h3>';
@@ -762,10 +834,11 @@ $(function () {
                         else if (returndata['status'] == 'success') {
 
                             if (returndata['validacao']) {
+                              
                                 window.location.href = returndata['validacao'];
                             } else {
 
-                               
+
                                 var textodealerta = '<h3 class="p-0 m-0 text-center"><i class="fas fa-check"></i></h3>';
                                 textodealerta += '<small class="d-block text-center"><b class="d-block text-center">Alteração concluída com sucesso!';
 

@@ -1,7 +1,27 @@
 <?php
-if ($user->type > 2) {
-	echo '<b>CPF/CNPJ: </b>' . $user->cpf;
+if ($user->type == 3) {
+	echo '<b>Razão Social: </b>' . $user->fantasia;
 	echo '<hr>';
+}
+if ($user->type == 4) {
+	echo '<b>CPF: </b>' . $user->cpf;
+	echo '<hr>';
+}
+if ($user->type == 3) {
+	echo '<b>CNPJ: </b>' . $user->cpf;
+	echo '<hr>';
+	$briefresp = '<span class="badge btn-danger btn-small">Não Selecionado</span>';
+	if($user->briefing)
+	{
+	$briefresp = '<span class="badge btn-warning text-dark btn-small">Não Respondido</span>';
+	}
+	if($user->briefing_replyed)
+	{
+	$briefresp = '<a target="_blank" href="'.base_url('/Briefing/user/view/'.$user->slug).'" class="badge btn-success btn-small">Ver Briefing</a>';
+	}
+	echo '<b>Briefing: </b>'.$briefresp;
+	echo '<hr>';
+
 }
 if ($user->nascimento) {
 	$date = new DateTime($user->nascimento);
