@@ -97,10 +97,11 @@ class Save extends BaseController
         $session = session();
 
       
+        echo 1;
 
         if (!$session->get('logged')) { } else {
             if ($session->get('logged')->type < 2) {
-
+                echo 2;
                 $data = $_POST;
 
                 $while = $data['users'];
