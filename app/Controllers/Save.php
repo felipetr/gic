@@ -92,7 +92,89 @@ class Save extends BaseController
             }
         }
     }
+    public function newproj()
+    {
+        $session = session();
 
+        echo '<pre>';
+        print_r($_POST);
+        
+        echo '</pre>';
+        exit();
+
+        if (!$session->get('logged')) { } else {
+            if ($session->get('logged')->type < 2) {
+
+                $data = $_POST;
+
+                $while = $data['question'];
+                $response = [];
+                $response['validacao'] = '';
+                $response['status'] = 'success';
+                if (!$data['question']) {
+                    $response['status'] = 'warning';
+                    $response['validacao'] = 'Crie, ao menos, uma pergunta!';
+                } else {
+
+                    $question = implode('", "', $while);
+                    $question = '["' . $question . '"]';
+
+                    $name = $data['name'];
+
+                    helper('siteconfig');
+                    $data['slug'] = hw_slug($data['name']);
+
+
+                    $sql = "SELECT * FROM hw_briefings WHERE slug = ?";
+
+                    $db = db_connect();
+                    $query = $db->query($sql, [$data['slug']]);
+                    $count = count($query->getResult());
+
+                    $total = 1;
+                    for ($i = 0; $i < 1; $i) {
+
+                        $sql = "SELECT * FROM hw_briefings WHERE slug = ?";
+
+                        $query = $db->query($sql, [$data['slug']]);
+                        $count = count($query->getResult());
+
+                        if ($count) {
+                            $data['slug'] =    $data['slug'] . '-' . $total;
+                            $i = 0;
+                        } else {
+                            $i = 1;
+                        }
+
+                        $total++;
+                    }
+
+
+
+                    $sql = "INSERT INTO hw_briefings (
+                        name, slug, questions)  VALUES  (?, ?, ?)";
+
+
+                    $query = $db->query($sql, [
+                        $data['name'],
+                        $data['slug'],
+                        $question
+                    ]);
+                }
+                if ($response['status'] == 'success') {
+                    $response['validacao'] = base_url('/Briefing/edit') . '/' . $data['slug'];
+                    if ($data['saveandclose'] == 'true') {
+
+                        $response['validacao'] = base_url('/Dashboard/briefings') . '/list';
+                    }
+                }
+                header('Content-Type: application/json');
+                echo json_encode($response);
+            }
+        }
+    }
+
+    
     public function newbrief()
     {
         $session = session();

@@ -5,7 +5,7 @@
 
 
 
-<form class="row" id="newbriefform">
+<form class="row" id="newprojectform">
     <div class="col-12 col-md-6 col-lg-9">
         Nome:
         <input class="form-control mb-3" name="name" required>
