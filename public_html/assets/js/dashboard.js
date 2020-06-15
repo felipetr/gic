@@ -97,7 +97,7 @@ $(function () {
 
     });
 
-    $('#newbprojectform').on('submit', (function (e) {
+    $('#newprojectform').on('submit', (function (e) {
         e.preventDefault();
 
         $('#newbprojectform #alertbox').slideDown();
