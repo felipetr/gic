@@ -1,6 +1,17 @@
 html {
     height: 100%;
 }
+body{
+	background-image: url('https://aadcdn.msauth.net/ests/2.1/content/images/backgrounds/2_bc3d32a696895f78c19df6c717586a5d.svg');
+	background-position: center center;
+	background-size: 100% 100%;
+}
+
+.bg-transparent-white
+{
+	background: rgba(255,255,255,.8);
+	
+}
 .select-user-btn
 {
 	cursor: pointer;

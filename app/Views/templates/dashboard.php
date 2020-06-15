@@ -196,7 +196,7 @@
                 </div>
             </nav>
             <div class="p-3 mb-4">
-                <div class=" <?php if (isset($title)) { ?> bg-white         <?php } ?> text-dark">
+                <div class=" <?php if (isset($title)) { ?> bg-transparent-white<?php } ?> text-dark">
                     <?php if (isset($title)) { ?>
                         <h4 class="text-secondary font-weight-light p-4 m-0"><i class="fas fa-<?php echo $icon; ?>"></i> <?php echo $title; ?></h4>
 
