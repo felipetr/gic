@@ -96,80 +96,79 @@ class Save extends BaseController
     {
         $session = session();
 
-        echo '<pre>';
-        print_r($_POST);
-        
-        echo '</pre>';
-        exit();
+      
 
         if (!$session->get('logged')) { } else {
             if ($session->get('logged')->type < 2) {
 
                 $data = $_POST;
 
-                $while = $data['question'];
+                $while = $data['users'];
                 $response = [];
                 $response['validacao'] = '';
                 $response['status'] = 'success';
-                if (!$data['question']) {
-                    $response['status'] = 'warning';
-                    $response['validacao'] = 'Crie, ao menos, uma pergunta!';
-                } else {
 
-                    $question = implode('", "', $while);
-                    $question = '["' . $question . '"]';
-
-                    $name = $data['name'];
-
-                    helper('siteconfig');
-                    $data['slug'] = hw_slug($data['name']);
+                helper('siteconfig');
+                $data['slug'] = hw_slug($data['name']);
 
 
-                    $sql = "SELECT * FROM hw_briefings WHERE slug = ?";
 
-                    $db = db_connect();
+
+                $db = db_connect();
+				$sql = "SELECT * FROM hw_projects WHERE slug = ?";
+                $query = $db->query($sql, [$data['slug']]);
+                $count = count($query->getResult());
+
+
+                $total = 1;
+                for ($i = 0; $i < 1; $i) {
+
+                  
+                  
+                        $sql = "SELECT * FROM hw_projects WHERE slug = ?";
+                 
                     $query = $db->query($sql, [$data['slug']]);
                     $count = count($query->getResult());
 
-                    $total = 1;
-                    for ($i = 0; $i < 1; $i) {
-
-                        $sql = "SELECT * FROM hw_briefings WHERE slug = ?";
-
-                        $query = $db->query($sql, [$data['slug']]);
-                        $count = count($query->getResult());
-
-                        if ($count) {
-                            $data['slug'] =    $data['slug'] . '-' . $total;
-                            $i = 0;
-                        } else {
-                            $i = 1;
-                        }
-
-                        $total++;
+                    if ($count) {
+                        $data['slug'] =    $data['slug'] . '-' . $total;
+                        $i = 0;
+                    } else {
+                        $i = 1;
                     }
 
-
-
-                    $sql = "INSERT INTO hw_briefings (
-                        name, slug, questions)  VALUES  (?, ?, ?)";
-
-
-                    $query = $db->query($sql, [
-                        $data['name'],
-                        $data['slug'],
-                        $question
-                    ]);
+                    $total++;
                 }
-                if ($response['status'] == 'success') {
-                    $response['validacao'] = base_url('/Briefing/edit') . '/' . $data['slug'];
-                    if ($data['saveandclose'] == 'true') {
 
-                        $response['validacao'] = base_url('/Dashboard/briefings') . '/list';
-                    }
-                }
-                header('Content-Type: application/json');
-                echo json_encode($response);
+                $sql = "INSERT INTO hw_projects (
+                    name, slug, costumer, briefing, description, gdrive_folder_url, status, valor, workarea, created_at)  VALUES  (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())";
+              
+              $query = $db->query($sql, [
+                $data['name'],
+                $data['slug'],
+                $data['costumer'],
+                $data['briefing'],
+                $data['descricao'],
+                $data['gdrive'],
+                1,
+                 $data['valor'],
+                 $data['workarea']
+            ]);
+
+            $sql = "SELECT * FROM hw_projects WHERE slug = ?";
+
+            $db = db_connect();
+            $query = $db->query($sql, [$data['slug']]);
+            $count = $query->getResult();
+
+            $getidf = $count[0]->id;
+
+
+            echo $getidf;
+            exit();
+
+
+
             }
         }
     }

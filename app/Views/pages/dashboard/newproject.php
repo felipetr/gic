@@ -21,9 +21,9 @@
 
 
 
-        Categoria:
+        Tipo:
 
-        <select name="briefing" class="custom-select mb-3" required>
+        <select name="workarea" class="custom-select mb-3" required>
             <option></option>
             <?php foreach ($workareas as &$value) { ?>
                 <option value="<?php echo $value->slug; ?>"><?php echo $value->name; ?></option>
@@ -55,7 +55,7 @@
             ?>
             <input class="form-control realselect" value="<?php
                                                             $querybr = $query->briefing;
-                                                            echo $arrbr[$querybr]; ?>">
+                                                            echo $arrbr[$querybr]; ?>" required>
             <input name="briefing" value="<?php echo $query->briefing; ?>" type="hidden" class="inputvalue">
             <div id="briefinglist" class="fakelist" style="display:none;">
 
@@ -73,7 +73,7 @@
 
 
         Descrição:
-        <textarea name="descricao" class="summernote"></textarea>
+        <textarea name="descricao" class="addresssummernote"></textarea>
 
 
 
@@ -84,7 +84,7 @@
                                     echo  'col-sm-6 col-md-8';
                                 } ?>">
                 Pasta do Google Drive:
-                <input class="form-control mb-3" name="gdrive" required>
+                <input class="form-control mb-3" name="gdrive">
             </div>
             <?php if (!$logged->type) { ?>
                 <div class="col-12 col-sm-6 col-md-4">
