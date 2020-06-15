@@ -2,7 +2,7 @@
     
     ?>
     <?php if ($cardcounter['profisionaisna']) { ?>
-        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <div class="alert alert-warning bg-shadow alert-dismissible fade show" role="alert">
             <?php $plural = ['','l',''];
             if($cardcounter['profisionaisna'] > 1)
             {
