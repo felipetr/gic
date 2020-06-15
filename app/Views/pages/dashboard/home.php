@@ -24,7 +24,7 @@
     <?php } ?>
     <div class="row">
         <div class="col-12 col-md-6 col-lg-4">
-            <div class="alert p-0 m-0 mb-3 alert-light text-dark border-ml text-center">
+            <div class="alert p-0 m-0 mb-3 bg-transparent-white text-dark border-ml text-center">
                 <h5 class="m-0 p-2"><i class="fas fa-store"></i> Clientes</h5>
                 <hr class="m-0 p-0">
                 <div class="p-2">
@@ -48,7 +48,7 @@
         </div>
 
         <div class="col-12 col-md-6 col-lg-4">
-            <div class="alert p-0 m-0 mb-3 alert-light text-dark border-ml text-center">
+            <div class="alert p-0 m-0 mb-3 bg-transparent-white text-dark border-ml text-center">
                 <h5 class="m-0 p-2"><i class="fas fa-book"></i> Projetos</h5>
                 <hr class="m-0 p-0">
                 <div class="p-2">
@@ -72,7 +72,7 @@
         </div>
 
         <div class="col-12 col-md-6 col-lg-4">
-            <div class="alert p-0 m-0 mb-3 alert-light text-dark border-ml text-center">
+            <div class="alert p-0 m-0 mb-3 bg-transparent-white text-dark border-ml text-center">
                 <h5 class="m-0 p-2"><i class="fas fa-user-tie"></i> Auditores</h5>
                 <hr class="m-0 p-0">
                 <div class="p-2">
@@ -97,7 +97,7 @@
         </div>
 
         <div class="col-12 col-md-6 col-lg-4">
-            <div class="alert p-0 m-0 mb-3 alert-light text-dark border-ml text-center">
+            <div class="alert p-0 m-0 mb-3 bg-transparent-white text-dark border-ml text-center">
                 <h5 class="m-0 p-2"><i class="fas fa-user"></i> Profissionais</h5>
                 <hr class="m-0 p-0">
                 <div class="p-2">
@@ -122,7 +122,7 @@
 
 
         <div class="col-12 col-md-6 col-lg-4">
-            <div class="alert p-0 m-0 mb-3 alert-light text-dark border-ml text-center">
+            <div class="alert p-0 m-0 mb-3 bg-transparent-white text-dark border-ml text-center">
                 <h5 class="m-0 p-2"><i class="fas fa-user-cog"></i> Administradores</h5>
                 <hr class="m-0 p-0">
                 <div class="p-2">
@@ -147,7 +147,7 @@
 
 
         <div class="col-12 col-md-6 col-lg-4">
-            <div class="alert p-0 m-0 mb-3 alert-light text-dark border-ml text-center">
+            <div class="alert p-0 m-0 mb-3 bg-transparent-white text-dark border-ml text-center">
                 <h5 class="m-0 p-2"><i class="fas fa-briefcase"></i> Briefings</h5>
                 <hr class="m-0 p-0">
                 <div class="p-2">
