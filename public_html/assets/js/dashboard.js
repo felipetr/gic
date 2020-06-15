@@ -132,7 +132,10 @@ $(function () {
                         $('#newprojectform #alertbox .alert').html(textodealerta).removeClass('alert-danger').addClass('alert-warning').removeClass('alert-info').removeClass('alert-success');
 
                     } else {
-                        window.location.href = data['validacao'];
+                      //  window.location.href = data['validacao'];
+
+                      
+
                     }
                 } catch (e) {
                     $('#newprojectform #alertbox').slideDown();
