@@ -100,10 +100,10 @@ $(function () {
     $('#newprojectform').on('submit', (function (e) {
         e.preventDefault();
 
-        $('#newbprojectform #alertbox').slideDown();
+        $('#newprojectform #alertbox').slideDown();
         var textodealerta = '<h3 class="p-0 m-0 text-center"><i class="fas fa-circle-notch fa-spin"></i></h3>';
         textodealerta += '<small class="d-block text-center"><b class="d-block text-center">Salvando...</b></small>';
-        $('#newbprojectform #alertbox .alert').html(textodealerta).removeClass('alert-danger').removeClass('alert-warning').addClass('alert-info').removeClass('alert-success');
+        $('#newprojectform #alertbox .alert').html(textodealerta).removeClass('alert-danger').removeClass('alert-warning').addClass('alert-info').removeClass('alert-success');
 
 
         $.ajax({
@@ -115,10 +115,10 @@ $(function () {
             contentType: false,
             processData: false,
             error: function (result) {
-                $('#newbprojectform #alertbox').slideDown();
+                $('#newprojectform #alertbox').slideDown();
                 var textodealerta = '<h3 class="p-0 m-0 text-center"><i class="fas fa-exclamation-triangle"></i></h3>';
                 textodealerta += '<small class="d-block text-center"><b class="d-block text-center">Houve um erro ao enviar os dados, por favor tente mais tarde!</b></small>';
-                $('#newbprojectform #alertbox .alert').html(textodealerta).addClass('alert-danger').removeClass('alert-warning').removeClass('alert-info').removeClass('alert-success');
+                $('#newprojectform #alertbox .alert').html(textodealerta).addClass('alert-danger').removeClass('alert-warning').removeClass('alert-info').removeClass('alert-success');
 
             },
             success: function (returndata) {
@@ -126,19 +126,19 @@ $(function () {
                     data = JSON.parse(returndata);
 
                     if (data['status'] == 'warning') {
-                        $('#newbprojectform #alertbox').slideDown();
+                        $('#newprojectform #alertbox').slideDown();
                         var textodealerta = '<h3 class="p-0 m-0 text-center"><i class="fas fa-exclamation-triangle"></i></h3>';
                         textodealerta += '<small class="d-block text-center"><b class="d-block text-center">' + data['validacao'] + '</b></small>';
-                        $('#newbprojectform #alertbox .alert').html(textodealerta).removeClass('alert-danger').addClass('alert-warning').removeClass('alert-info').removeClass('alert-success');
+                        $('#newprojectform #alertbox .alert').html(textodealerta).removeClass('alert-danger').addClass('alert-warning').removeClass('alert-info').removeClass('alert-success');
 
                     } else {
                         window.location.href = data['validacao'];
                     }
                 } catch (e) {
-                    $('#newbprojectform #alertbox').slideDown();
+                    $('#newprojectform #alertbox').slideDown();
                     var textodealerta = '<h3 class="p-0 m-0 text-center"><i class="fas fa-exclamation-triangle"></i></h3>';
                     textodealerta += '<small class="d-block text-center"><b class="d-block text-center">Houve um erro ao enviar os dados, por favor tente mais tarde!</b></small>';
-                    $('#newbprojectform #alertbox .alert').html(textodealerta).addClass('alert-danger').removeClass('alert-warning').removeClass('alert-info').removeClass('alert-success');
+                    $('#newprojectform #alertbox .alert').html(textodealerta).addClass('alert-danger').removeClass('alert-warning').removeClass('alert-info').removeClass('alert-success');
 
                 }
 

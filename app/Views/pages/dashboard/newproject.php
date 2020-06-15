@@ -73,7 +73,7 @@
 
 
         Descrição:
-        <textarea name="address" class="addresssummernote"></textarea>
+        <textarea name="descricao" class="summernote"></textarea>
 
 
 
