@@ -88,11 +88,11 @@ function smtpserver($mailer)
      //$mailer->SMTPDebug = 3;
     $mailer->isSMTP();                                   // Set mailer to use SMTP
     $mailer->isHTML(true);                                 // Set mailer to use SMTP
-    $mailer->Host = 'mail.felipetravassos.com ';                 // Specify main and backup SMTP servers
+    $mailer->Host = '';                 // Specify main and backup SMTP servers
     $mailer->SMTPAuth = true;
-    $mailer->SMTPSecure = 'ssl';                           // Enable SMTP authentication
-    $mailer->Username = 'naoresponda@felipetravassos.com'; //Login de autenticação do SMTP
-    $mailer->Password = '6UA1xyaC8c7q'; //Senha de autenticação do SMTP
+    $mailer->SMTPSecure = '';                           // Enable SMTP authentication
+    $mailer->Username = ''; //Login de autenticação do SMTP
+    $mailer->Password = ''; //Senha de autenticação do SMTP
     $mailer->Port = 465;
     $mailer->SMTPKeepAlive = true;
     // don't change the quotes!
@@ -104,8 +104,8 @@ function smtpserver($mailer)
         )
     );
 
-    $mailer->FromName = 'GIC - Gestor de Informação Compartilhada'; //Nome que será exibido
-    $mailer->From = 'gic@gerens.com.br'; //Obrigatório ser a mesma caixa postal configurada no remetente do SMTP
+    $mailer->FromName = ''; //Nome que será exibido
+    $mailer->From = ''; //Obrigatório ser a mesma caixa postal configurada no remetente do SMTP
 
     return $mailer;
 }
@@ -115,8 +115,8 @@ function encrypt_decrypt($action, $string)
 {
 
     $encrypt_method = "AES-256-CBC";
-    $secret_key = 'TmZNOUNHU2dGaG43OTZTZW5nVHk2NWlwSnN1OHg4MXRIWnFBTXVYcVlpTlo3VlFBUldxY3QvZ1U1QjhmdVBYLw==';
-    $secret_iv = 'WkwxNEREMXpYT21WT2NSY2dHZHA4azN0K3RSS2lYOFhReEptVHJzOGZZSjYxSkFFUjVGaFdSd2FNYmdjMEJmbQ==';
+    $secret_key = '';
+    $secret_iv = '';
     $key = hash('sha256', $secret_key);
 
 
